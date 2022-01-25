@@ -1,0 +1,80 @@
+{
+ "autoname": "field:item",
+ "creation": "2022-01-25 16:10:00.329465",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_info_section",
+  "item",
+  "description",
+  "uom",
+  "cost",
+  "owner"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_info_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Info"
+  },
+  {
+   "description": "Item name",
+   "fetch_from": "item.item_name",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description",
+   "unique": 1
+  },
+  {
+   "fetch_from": "item.stock_uom",
+   "fieldname": "uom",
+   "fieldtype": "Data",
+   "label": "Unit of measure"
+  },
+  {
+   "fetch_from": "item.valuation_rate",
+   "fieldname": "cost",
+   "fieldtype": "Data",
+   "label": "Cost"
+  },
+  {
+   "description": "Item type",
+   "fetch_from": "item.item_group",
+   "fieldname": "owner",
+   "fieldtype": "Data",
+   "label": "Owner"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Name",
+   "options": "Item",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "modified": "2022-01-25 17:18:27.760908",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Item",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

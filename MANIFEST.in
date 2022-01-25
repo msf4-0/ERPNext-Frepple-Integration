@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include frepple *.css
+recursive-include frepple *.csv
+recursive-include frepple *.html
+recursive-include frepple *.ico
+recursive-include frepple *.js
+recursive-include frepple *.json
+recursive-include frepple *.md
+recursive-include frepple *.png
+recursive-include frepple *.py
+recursive-include frepple *.svg
+recursive-include frepple *.txt
+recursive-exclude frepple *.pyc

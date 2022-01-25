@@ -1,0 +1,72 @@
+{
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:customer",
+ "creation": "2022-01-25 17:27:02.135512",
+ "description": "Buyer of Goods and Services.",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_info",
+  "customer",
+  "customer_group",
+  "customer_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Name and Type",
+   "oldfieldtype": "Section Break",
+   "options": "fa fa-user"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Name",
+   "options": "Customer",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "customer.customer_group",
+   "fieldname": "customer_group",
+   "fieldtype": "Data",
+   "label": "Owner"
+  },
+  {
+   "fetch_from": "customer.customer_type",
+   "fieldname": "customer_type",
+   "fieldtype": "Data",
+   "label": "Category"
+  }
+ ],
+ "icon": "fa fa-user",
+ "modified": "2022-01-25 17:38:58.510385",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Customer",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "ASC",
+ "track_changes": 1
+}

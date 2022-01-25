@@ -1,0 +1,73 @@
+{
+ "creation": "2022-01-25 15:57:34.227098",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "authorization_header",
+  "username",
+  "password",
+  "url",
+  "frepple_integration"
+ ],
+ "fields": [
+  {
+   "fieldname": "authorization_header",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Authorization Header",
+   "reqd": 1
+  },
+  {
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Username",
+   "reqd": 1
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Password",
+   "reqd": 1
+  },
+  {
+   "description": "The URL is use for REST API request. Get the router IP address to used for the request. You can find the Wireless LAN adapter Wi-Fi IPv4 address using ipconfig (Window OS) or ifconfig (Linux OS) command.\nURL of the localhost that you host the Frepple. E.g. http://192.168.112.1:5000. You should enter the IP address of docker if you installed Frepple with docker desktop. ",
+   "fieldname": "url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "URL",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Tick the box to enable Frepple integration. Data will export automatically to Frepple now after creating the data.",
+   "fieldname": "frepple_integration",
+   "fieldtype": "Check",
+   "label": "Frepple Integration"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2022-01-25 16:03:02.248920",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
