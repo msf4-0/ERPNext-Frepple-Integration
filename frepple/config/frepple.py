@@ -8,15 +8,23 @@ def get_data():
             "items": [
                 {
                     "type": "doctype",
-                    "name": "Item Frepple",
+                    "name": "Frepple Item",
+                    "label": "Frepple Item",
                     "onboard": 1,
                 },
-                # {
-                #     "type": "page",
-                #     "name": "barcode-scanner",
-                #     "label": "Barcode Scanner",
-                #     "onboard": 1,
-                # },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Customer",
+                    "label": "Frepple Customer",
+                    "onboard": 2,
+                },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Supplier",
+                    "label": "Frepple Supplier",
+                    "onboard": 3,
+                },
+
             ]
         },
         {
@@ -28,6 +36,23 @@ def get_data():
                     "label": "Frepple Setting",
                     "onboard": 1,
                 },
+            ]
+        },
+        {
+            "label": _("Frepple Result"),
+            "items": [
+                {
+                    "type": "doctype",
+                    "name": "Frepple Sales Order",
+                    "label": "Frepple Sales Order",
+                    "onboard": 1,
+                },
+                # {
+                #     "type": "doctype",
+                #     "name": "Frepple Manufacturing Order",
+                #     "label": "Frepple Manufacturing Order",
+                #     "onboard": 2,
+                # },
             ]
         }
     ]
