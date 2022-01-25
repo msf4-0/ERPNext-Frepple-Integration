@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Frepple
 
 Integration between ERPNext and Frepple
@@ -5,3 +6,4 @@ Integration between ERPNext and Frepple
 #### License
 
 MIT
+=======
