@@ -54,6 +54,17 @@ def get_data():
                 #     "onboard": 2,
                 # },
             ]
+        },
+        {
+            "label": _("Frepple Page"),
+            "items": [
+                {
+                    "type": "page",
+                    "name": "frepple-test-page",
+                    "label": "Frepple Test Page",
+                    "onboard": 1
+                }
+            ]
         }
     ]
     return config

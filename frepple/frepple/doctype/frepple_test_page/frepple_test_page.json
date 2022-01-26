@@ -1,0 +1,58 @@
+{
+ "creation": "2022-01-26 14:59:40.497130",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "expiration",
+  "user",
+  "navigation_bar",
+  "secret_key"
+ ],
+ "fields": [
+  {
+   "description": "In minutes.",
+   "fieldname": "expiration",
+   "fieldtype": "Int",
+   "label": "Expiration"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Data",
+   "label": "User"
+  },
+  {
+   "description": "Enter \"True\" or \"False\"",
+   "fieldname": "navigation_bar",
+   "fieldtype": "Data",
+   "label": "Navigation Bar"
+  },
+  {
+   "fieldname": "secret_key",
+   "fieldtype": "Data",
+   "label": "Secret Key"
+  }
+ ],
+ "modified": "2022-01-26 14:59:40.497130",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Test Page",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
