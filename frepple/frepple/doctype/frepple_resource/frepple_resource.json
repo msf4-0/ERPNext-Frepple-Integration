@@ -1,0 +1,131 @@
+{
+ "autoname": "field:name1",
+ "creation": "2022-01-26 13:05:36.720757",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "resource_type",
+  "employee_check",
+  "column_break_3",
+  "workstation_check",
+  "section_break_5",
+  "employee",
+  "workstation",
+  "location",
+  "type",
+  "maximum",
+  "description",
+  "resource_owner",
+  "name1"
+ ],
+ "fields": [
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Frepple Location"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "default\nbuckets\nbuckets_day\nbuckets_week\nbuckets_month\ninfinite"
+  },
+  {
+   "default": "1",
+   "description": "Size of resource",
+   "fieldname": "maximum",
+   "fieldtype": "Int",
+   "label": "Maximum"
+  },
+  {
+   "depends_on": "eval:(doc.employee_check==1)",
+   "description": "Employee's name if it is a human resource",
+   "fetch_from": "employee.employee_name",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "description": "Owner defines the parent resource. Resources can be organized in a hierarchical tree.",
+   "fieldname": "resource_owner",
+   "fieldtype": "Link",
+   "label": "Owner",
+   "options": "Frepple Resource"
+  },
+  {
+   "fieldname": "resource_type",
+   "fieldtype": "Section Break",
+   "label": "Choose the resource type"
+  },
+  {
+   "depends_on": "eval:(doc.employee_check==1)",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "options": "Employee",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:(doc.workstation_check == 1)",
+   "fieldname": "workstation",
+   "fieldtype": "Link",
+   "label": "Workstation Name",
+   "options": "Workstation"
+  },
+  {
+   "depends_on": "eval:(doc.employee_check==1 || doc.workstation_check==1)",
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "name",
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:(doc.workstation_check==0)",
+   "fieldname": "employee_check",
+   "fieldtype": "Check",
+   "label": "Human Resource"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:(doc.employee_check==0)",
+   "fieldname": "workstation_check",
+   "fieldtype": "Check",
+   "label": "Workstation or Machine"
+  }
+ ],
+ "modified": "2022-01-26 16:24:38.488991",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Resource",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

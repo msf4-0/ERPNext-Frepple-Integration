@@ -6,7 +6,9 @@
  "engine": "InnoDB",
  "field_order": [
   "calendar_name",
-  "default_value"
+  "default_value",
+  "calendar_buckets_section",
+  "calendar_bucket"
  ],
  "fields": [
   {
@@ -22,9 +24,20 @@
    "fieldname": "default_value",
    "fieldtype": "Int",
    "label": "Default value"
+  },
+  {
+   "fieldname": "calendar_buckets_section",
+   "fieldtype": "Section Break",
+   "label": "Calendar Buckets"
+  },
+  {
+   "fieldname": "calendar_bucket",
+   "fieldtype": "Table",
+   "label": "Buckets list",
+   "options": "Frepple Calendar Calendar Bucket"
   }
  ],
- "modified": "2022-01-26 11:03:16.195856",
+ "modified": "2022-01-26 12:43:42.926697",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Calendar",

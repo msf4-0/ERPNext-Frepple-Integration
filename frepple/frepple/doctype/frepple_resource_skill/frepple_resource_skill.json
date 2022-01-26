@@ -1,35 +1,42 @@
 {
- "autoname": "field:warehouse",
- "creation": "2022-01-26 10:43:28.798877",
+ "creation": "2022-01-26 15:03:46.147944",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "warehouse",
-  "available"
+  "resource",
+  "skill",
+  "priority"
  ],
  "fields": [
   {
-   "description": "Define the working hour and holidays",
-   "fieldname": "available",
-   "fieldtype": "Link",
-   "label": "Available",
-   "options": "Frepple Calendar"
-  },
-  {
-   "fieldname": "warehouse",
+   "fieldname": "resource",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Name",
-   "options": "Warehouse",
-   "reqd": 1,
-   "unique": 1
+   "label": "Resource",
+   "options": "Frepple Resource",
+   "reqd": 1
+  },
+  {
+   "fieldname": "skill",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Skill",
+   "options": "Frepple Skill",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "Proficiency of the skill.\n0-Highest Proficiency",
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority"
   }
  ],
- "modified": "2022-01-26 13:07:41.617641",
+ "modified": "2022-01-26 15:56:44.939864",
  "modified_by": "Administrator",
  "module": "Frepple",
- "name": "Frepple Location",
+ "name": "Frepple Resource Skill",
  "owner": "Administrator",
  "permissions": [
   {

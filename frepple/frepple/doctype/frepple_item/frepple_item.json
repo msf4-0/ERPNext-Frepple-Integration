@@ -10,7 +10,7 @@
   "description",
   "uom",
   "cost",
-  "owner"
+  "item_owner"
  ],
  "fields": [
   {
@@ -39,13 +39,6 @@
    "label": "Cost"
   },
   {
-   "description": "Item type",
-   "fetch_from": "item.item_group",
-   "fieldname": "owner",
-   "fieldtype": "Data",
-   "label": "Owner"
-  },
-  {
    "fieldname": "item",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -53,9 +46,16 @@
    "options": "Item",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "description": "Item type. E.g raw material",
+   "fetch_from": "item.item_group",
+   "fieldname": "item_owner",
+   "fieldtype": "Data",
+   "label": "Owner"
   }
  ],
- "modified": "2022-01-25 17:18:27.760908",
+ "modified": "2022-01-26 16:32:00.290477",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Item",
