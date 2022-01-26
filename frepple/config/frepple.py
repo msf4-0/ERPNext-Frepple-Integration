@@ -161,7 +161,6 @@ def get_data():
             ]
         },
         {
-<<<<<<< HEAD
             "label": _("Frepple Page"),
             "items": [
                 {
@@ -171,8 +170,8 @@ def get_data():
                     "onboard": 1
                 }
             ]
-        }
-=======
+        },
+        {
             "label": _("Settings"),
             "items": [
                 {
@@ -184,6 +183,5 @@ def get_data():
             ]
         },
 
->>>>>>> ec5c074f40b84f040d0424af5e7cdf03262b48a3
     ]
     return config
