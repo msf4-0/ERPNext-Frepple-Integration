@@ -48,11 +48,12 @@
    "label": "Description"
   },
   {
+   "default": "Operator",
    "description": "Owner defines the parent resource. Resources can be organized in a hierarchical tree.",
    "fieldname": "resource_owner",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Owner",
-   "options": "Frepple Resource"
+   "options": "Operator\nWorkstation"
   },
   {
    "fieldname": "resource_type",
@@ -106,7 +107,7 @@
    "label": "Workstation or Machine"
   }
  ],
- "modified": "2022-01-26 16:24:38.488991",
+ "modified": "2022-01-26 17:51:00.405039",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Resource",

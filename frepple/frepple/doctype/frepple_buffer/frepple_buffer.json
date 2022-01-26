@@ -1,43 +1,50 @@
 {
- "autoname": "format:{resource}@{skill}",
- "creation": "2022-01-26 15:03:46.147944",
+ "autoname": "format:{item}@{location}",
+ "creation": "2022-01-26 16:42:19.434597",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "resource",
-  "skill",
-  "priority"
+  "item",
+  "location",
+  "onhand",
+  "minimum"
  ],
  "fields": [
   {
-   "fieldname": "resource",
+   "fieldname": "item",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Resource",
-   "options": "Frepple Resource",
+   "label": "Item",
+   "options": "Frepple Item",
    "reqd": 1
   },
   {
-   "fieldname": "skill",
+   "fieldname": "location",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Skill",
-   "options": "Frepple Skill",
+   "label": "Location",
+   "options": "Frepple Location",
    "reqd": 1
   },
   {
-   "default": "1",
-   "description": "Proficiency of the skill.",
-   "fieldname": "priority",
-   "fieldtype": "Rating",
-   "label": "Priority"
+   "default": "0.00",
+   "description": "Current inventory",
+   "fieldname": "onhand",
+   "fieldtype": "Float",
+   "label": "Onhand"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "minimum",
+   "fieldtype": "Float",
+   "label": "Minimum"
   }
  ],
- "modified": "2022-01-26 17:24:13.987905",
+ "modified": "2022-01-26 16:42:51.558559",
  "modified_by": "Administrator",
  "module": "Frepple",
- "name": "Frepple Resource Skill",
+ "name": "Frepple Buffer",
  "owner": "Administrator",
  "permissions": [
   {

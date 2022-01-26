@@ -28,6 +28,7 @@
    "reqd": 1
   },
   {
+   "default": "1",
    "description": "Amount of resource needed for the operation.",
    "fieldname": "quantity",
    "fieldtype": "Float",
@@ -51,7 +52,7 @@
    "label": "Employee Check"
   }
  ],
- "modified": "2022-01-26 16:22:46.631111",
+ "modified": "2022-01-26 17:34:00.644008",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Operation Resource",

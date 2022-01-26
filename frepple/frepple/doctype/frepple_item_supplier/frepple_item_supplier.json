@@ -1,5 +1,5 @@
 {
- "autoname": "format:SUP-ITM-{####}",
+ "autoname": "format:{supplier}@{item}",
  "creation": "2022-01-26 13:18:48.110700",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -58,7 +58,7 @@
    "label": "Time"
   }
  ],
- "modified": "2022-01-26 13:19:50.426853",
+ "modified": "2022-01-26 17:30:42.625347",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Item Supplier",
