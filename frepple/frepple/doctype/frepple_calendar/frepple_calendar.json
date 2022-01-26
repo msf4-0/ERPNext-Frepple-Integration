@@ -1,0 +1,49 @@
+{
+ "autoname": "field:calendar_name",
+ "creation": "2022-01-26 11:02:17.856720",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "calendar_name",
+  "default_value"
+ ],
+ "fields": [
+  {
+   "fieldname": "calendar_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Calendar name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "0: Unavailable calendar \n1: Available calendar",
+   "fieldname": "default_value",
+   "fieldtype": "Int",
+   "label": "Default value"
+  }
+ ],
+ "modified": "2022-01-26 11:03:16.195856",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Calendar",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
