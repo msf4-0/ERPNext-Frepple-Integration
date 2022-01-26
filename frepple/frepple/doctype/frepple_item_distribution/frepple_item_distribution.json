@@ -1,0 +1,142 @@
+{
+ "autoname": "format:{item}@{origin}-{destination}",
+ "creation": "2022-01-26 13:24:51.311280",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "origin",
+  "destination",
+  "lead_time_section",
+  "day",
+  "column_break_6",
+  "time",
+  "additional_information_section",
+  "effetive_start_datetime",
+  "column_break_11",
+  "effective_end_datetime",
+  "section_break_13",
+  "prority",
+  "resource",
+  "resource_quantity"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Frepple Item",
+   "reqd": 1
+  },
+  {
+   "description": "Depart from where",
+   "fieldname": "origin",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Origin",
+   "options": "Frepple Location",
+   "reqd": 1
+  },
+  {
+   "fieldname": "destination",
+   "fieldtype": "Link",
+   "label": "Destination",
+   "options": "Frepple Location"
+  },
+  {
+   "description": "Duration for item transfer.",
+   "fieldname": "lead_time_section",
+   "fieldtype": "Section Break",
+   "label": "Lead time"
+  },
+  {
+   "default": "0",
+   "fieldname": "day",
+   "fieldtype": "Int",
+   "label": "Day"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "00:00:00",
+   "fieldname": "time",
+   "fieldtype": "Time",
+   "label": "Time"
+  },
+  {
+   "fieldname": "additional_information_section",
+   "fieldtype": "Section Break",
+   "label": "Additional information"
+  },
+  {
+   "default": "1970:1:1 00:00:00",
+   "fieldname": "effetive_start_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Effective Start Datetime",
+   "reqd": 1
+  },
+  {
+   "default": "2030:1:1 00:00:00",
+   "fieldname": "effective_end_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Effective End Datetime",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "Priority among all alternates.",
+   "fieldname": "prority",
+   "fieldtype": "Int",
+   "label": "Prority"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "Resource to model the distribution capacity",
+   "fieldname": "resource",
+   "fieldtype": "Link",
+   "label": "Resource",
+   "options": "Frepple Resource"
+  },
+  {
+   "description": "Resource capacity consumed per distributed unit.",
+   "fieldname": "resource_quantity",
+   "fieldtype": "Int",
+   "label": "Resource Quantity"
+  }
+ ],
+ "modified": "2022-01-26 17:08:22.174521",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Item Distribution",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

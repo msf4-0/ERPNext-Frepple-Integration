@@ -1,4 +1,5 @@
 {
+ "autoname": "field:supplier",
  "creation": "2022-01-25 16:04:26.170235",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,13 +10,15 @@
  "fields": [
   {
    "fieldname": "supplier",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Name",
-   "reqd": 1
+   "label": "Supplier",
+   "options": "Supplier",
+   "reqd": 1,
+   "unique": 1
   }
  ],
- "modified": "2022-01-25 16:04:26.170235",
+ "modified": "2022-01-26 17:25:38.081684",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Supplier",
@@ -34,7 +37,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

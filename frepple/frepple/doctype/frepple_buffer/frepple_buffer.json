@@ -1,0 +1,66 @@
+{
+ "autoname": "format:{item}@{location}",
+ "creation": "2022-01-26 16:42:19.434597",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "location",
+  "onhand",
+  "minimum"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Frepple Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Location",
+   "options": "Frepple Location",
+   "reqd": 1
+  },
+  {
+   "default": "0.00",
+   "description": "Current inventory",
+   "fieldname": "onhand",
+   "fieldtype": "Float",
+   "label": "Onhand"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "minimum",
+   "fieldtype": "Float",
+   "label": "Minimum"
+  }
+ ],
+ "modified": "2022-01-26 16:42:51.558559",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Buffer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
