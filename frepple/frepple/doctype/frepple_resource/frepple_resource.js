@@ -13,5 +13,17 @@ frappe.ui.form.on('Frepple Resource', {
 			frm.refresh_field('name1');
 		}
 	},
+	employee_check:function(frm){
+		if (employee_check){
+			frm.set_value('resource_owner','Operator')
+		}
+	},
+
+	workstation_check:function(frm){
+		if (workstation_check){
+			frm.set_value('resource_owner','Workstation')
+		}
+	}
+	
 	// }
 });

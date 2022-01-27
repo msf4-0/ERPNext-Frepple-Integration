@@ -34,18 +34,20 @@
   {
    "fetch_from": "customer.customer_group",
    "fieldname": "customer_group",
-   "fieldtype": "Data",
-   "label": "Owner"
+   "fieldtype": "Link",
+   "label": "Owner",
+   "options": "Customer Group"
   },
   {
    "fetch_from": "customer.customer_type",
    "fieldname": "customer_type",
-   "fieldtype": "Data",
-   "label": "Category"
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "Company\nIndividual"
   }
  ],
  "icon": "fa fa-user",
- "modified": "2022-01-25 17:38:58.510385",
+ "modified": "2022-01-26 17:58:01.108912",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Customer",

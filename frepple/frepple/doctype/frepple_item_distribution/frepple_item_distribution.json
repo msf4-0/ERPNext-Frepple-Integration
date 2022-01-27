@@ -1,4 +1,5 @@
 {
+ "autoname": "format:{item}@{origin}-{destination}",
  "creation": "2022-01-26 13:24:51.311280",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -30,6 +31,7 @@
    "reqd": 1
   },
   {
+   "description": "Depart from where",
    "fieldname": "origin",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -44,7 +46,7 @@
    "options": "Frepple Location"
   },
   {
-   "description": "Duration for item transfer",
+   "description": "Duration for item transfer.",
    "fieldname": "lead_time_section",
    "fieldtype": "Section Break",
    "label": "Lead time"
@@ -75,7 +77,7 @@
    "fieldname": "effetive_start_datetime",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Effetive start datetime",
+   "label": "Effective Start Datetime",
    "reqd": 1
   },
   {
@@ -83,7 +85,7 @@
    "fieldname": "effective_end_datetime",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Effective End datetime",
+   "label": "Effective End Datetime",
    "reqd": 1
   },
   {
@@ -115,7 +117,7 @@
    "label": "Resource Quantity"
   }
  ],
- "modified": "2022-01-26 14:54:12.881879",
+ "modified": "2022-01-26 17:08:22.174521",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Item Distribution",

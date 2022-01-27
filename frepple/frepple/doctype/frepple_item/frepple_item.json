@@ -8,9 +8,9 @@
   "basic_info_section",
   "item",
   "description",
-  "uom",
-  "cost",
-  "item_owner"
+  "stock_uom",
+  "valuation_rate",
+  "item_group"
  ],
  "fields": [
   {
@@ -27,18 +27,6 @@
    "unique": 1
   },
   {
-   "fetch_from": "item.stock_uom",
-   "fieldname": "uom",
-   "fieldtype": "Data",
-   "label": "Unit of measure"
-  },
-  {
-   "fetch_from": "item.valuation_rate",
-   "fieldname": "cost",
-   "fieldtype": "Data",
-   "label": "Cost"
-  },
-  {
    "fieldname": "item",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -48,14 +36,29 @@
    "unique": 1
   },
   {
+   "default": "Nos",
+   "fetch_from": "item.stock_uom",
+   "fieldname": "stock_uom",
+   "fieldtype": "Data",
+   "label": "Unit of measure"
+  },
+  {
+   "default": "0",
+   "fetch_from": "item.valuation_rate",
+   "fieldname": "valuation_rate",
+   "fieldtype": "Currency",
+   "label": "Cost"
+  },
+  {
    "description": "Item type. E.g raw material",
    "fetch_from": "item.item_group",
-   "fieldname": "item_owner",
-   "fieldtype": "Data",
-   "label": "Owner"
+   "fieldname": "item_group",
+   "fieldtype": "Link",
+   "label": "Owner",
+   "options": "Item Group"
   }
  ],
- "modified": "2022-01-26 16:32:00.290477",
+ "modified": "2022-01-26 17:55:01.681253",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Item",

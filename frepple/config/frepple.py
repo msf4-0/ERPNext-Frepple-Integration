@@ -24,12 +24,7 @@ def get_data():
                     "label": "Frepple Location",
                     "onboard": 3,
                 },
-                # {
-                #     "type": "doctype",
-                #     "name": "Frepple Supplier",
-                #     "label": "Frepple Supplier",
-                #     "onboard": 5,
-                # },
+
             ]
         },
         {
@@ -37,14 +32,14 @@ def get_data():
             "items": [
                 {
                     "type": "doctype",
-                    "name": "Frepple Item Distribution",
-                    "label": "Frepple Item Distribution",
+                    "name": "Frepple Buffer",
+                    "label": "Frepple Buffer",
                     "onboard": 1,
                 },
                 {
                     "type": "doctype",
-                    "name": "Frepple Buffer",
-                    "label": "Frepple Buffer",
+                    "name": "Frepple Item Distribution",
+                    "label": "Frepple Item Distribution",
                     "onboard": 2,
                 },
                 # {
@@ -134,6 +129,18 @@ def get_data():
                     "label": "Frepple Calendar Bucket",
                     "onboard": 2,
                 },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Resource Skill",
+                    "label": "Frepple Resource Skill",
+                    "onboard": 3,
+                },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Item Distribution",
+                    "label": "Frepple Item Distribution",
+                    "onboard": 4,
+                },
             ]
         },
         {
@@ -151,6 +158,17 @@ def get_data():
                 #     "label": "Frepple Manufacturing Order",
                 #     "onboard": 2,
                 # },
+            ]
+        },
+        {
+            "label": _("Frepple Page"),
+            "items": [
+                {
+                    "type": "page",
+                    "name": "frepple-test-page",
+                    "label": "Frepple Test Page",
+                    "onboard": 1
+                }
             ]
         },
         {
