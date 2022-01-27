@@ -14,13 +14,13 @@ frappe.ui.form.on('Frepple Resource', {
 		}
 	},
 	employee_check:function(frm){
-		if (employee_check){
+		if (frm.doc.employee_check){
 			frm.set_value('resource_owner','Operator')
 		}
 	},
 
 	workstation_check:function(frm){
-		if (workstation_check){
+		if (frm.doc.workstation_check){
 			frm.set_value('resource_owner','Workstation')
 		}
 	}

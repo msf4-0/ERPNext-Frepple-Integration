@@ -1,14 +1,17 @@
 {
+ "autoname": "format:{resource}-{operation}",
  "creation": "2022-01-26 16:02:43.716880",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "operation",
+  "resource_type_section",
+  "employee_check",
+  "section_break_4",
   "resource",
   "quantity",
-  "skill",
-  "employee_check"
+  "skill"
  ],
  "fields": [
   {
@@ -38,21 +41,29 @@
   },
   {
    "depends_on": "eval:(doc.employee_check==1)",
-   "description": "Recommended to assign the skill to a \"Owner\" human resources that have multiple employee grouped under it. When an operation loads a resource which has members, the planning algorithm will select one of the child resource.",
+   "description": "Skill needed for the operation. Only available to human resource.",
    "fieldname": "skill",
    "fieldtype": "Link",
    "label": "Skill",
    "options": "Frepple Skill"
   },
   {
-   "fetch_from": "resource.employee_check",
+   "default": "0",
    "fieldname": "employee_check",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "Employee Check"
+   "fieldtype": "Check",
+   "label": "Human Resource"
+  },
+  {
+   "fieldname": "resource_type_section",
+   "fieldtype": "Section Break",
+   "label": "Resource Type"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
   }
  ],
- "modified": "2022-01-26 17:34:00.644008",
+ "modified": "2022-01-27 17:47:06.669903",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Operation Resource",

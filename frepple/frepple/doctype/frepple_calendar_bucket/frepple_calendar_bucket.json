@@ -50,7 +50,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "2100:12:31 00:00:00",
+   "default": "2030:1:1 00:00:00",
    "description": "Effective calendar ending date",
    "fieldname": "end_datetime",
    "fieldtype": "Datetime",
@@ -118,7 +118,7 @@
    "label": "Sunday"
   }
  ],
- "modified": "2022-01-26 12:59:23.077625",
+ "modified": "2022-01-27 10:11:07.731124",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Calendar Bucket",

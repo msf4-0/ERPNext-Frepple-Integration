@@ -10,14 +10,17 @@ frappe.ui.form.on('Frepple Integration Data Fetching', {
 			method:"fetch_data",
 			args:{
 				doc: frm.doc
-			}
+			},
+			callback:function(r){
+				console.log(r.message)
+			},
 		})
 	},
 	select_all(frm){
 		var fields = frm.fields_dict;
 		for (const field in fields)
 		{
-			if(fields[field].df.fieldtype=="Check")
+			if(fields[field].df.fieldtype=="Check" && fields[field].df.read_only == 0)
 			{
 				frm.set_value(fields[field].df.fieldname,1);
 			}
@@ -27,7 +30,7 @@ frappe.ui.form.on('Frepple Integration Data Fetching', {
 		var fields = frm.fields_dict;
 		for (const field in fields)
 		{
-			if(fields[field].df.fieldtype=="Check")
+			if(fields[field].df.fieldtype=="Check"  && fields[field].df.read_only == 0)
 			{
 				frm.set_value(fields[field].df.fieldname,0);
 			}

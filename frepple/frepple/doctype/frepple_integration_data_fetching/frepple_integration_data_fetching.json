@@ -10,6 +10,7 @@
   "frepple_customer",
   "frepple_location",
   "frepple_inventory_section",
+  "frepple_buffer",
   "frepple_item_distribution",
   "frepple_capacity_section",
   "frepple_resource",
@@ -22,6 +23,9 @@
   "frepple_operation",
   "frepple_operation_material",
   "frepple_operation_resource",
+  "frepple_additional_data_section",
+  "frepple_calendar",
+  "frepple_calendar_bucket",
   "section_break_10",
   "deselect_all",
   "select_all",
@@ -59,7 +63,8 @@
    "default": "0",
    "fieldname": "frepple_resource_skill",
    "fieldtype": "Check",
-   "label": " Frepple Resource Skill"
+   "label": " Frepple Resource Skill",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -80,7 +85,8 @@
    "default": "0",
    "fieldname": "frepple_item_distribution",
    "fieldtype": "Check",
-   "label": "Frepple Item Distribution"
+   "label": "Frepple Item Distribution",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -125,7 +131,8 @@
    "default": "0",
    "fieldname": "frepple_item_supplier",
    "fieldtype": "Check",
-   "label": "Frepple Item Supplier"
+   "label": "Frepple Item Supplier",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -148,10 +155,36 @@
    "fieldname": "deselect_all",
    "fieldtype": "Button",
    "label": "Deselect All"
+  },
+  {
+   "default": "0",
+   "fieldname": "frepple_buffer",
+   "fieldtype": "Check",
+   "label": "Frepple Buffer"
+  },
+  {
+   "fieldname": "frepple_additional_data_section",
+   "fieldtype": "Section Break",
+   "label": "Frepple Additional Data",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "frepple_calendar",
+   "fieldtype": "Check",
+   "label": "Frepple Calendar",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "frepple_calendar_bucket",
+   "fieldtype": "Check",
+   "label": "Frepple Calendar Bucket",
+   "read_only": 1
   }
  ],
  "issingle": 1,
- "modified": "2022-01-27 09:21:57.445729",
+ "modified": "2022-01-27 13:24:24.693572",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Integration Data Fetching",

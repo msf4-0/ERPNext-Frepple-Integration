@@ -13,6 +13,7 @@
   "employee",
   "workstation",
   "location",
+  "available",
   "type",
   "maximum",
   "description",
@@ -45,6 +46,7 @@
    "fetch_from": "employee.employee_name",
    "fieldname": "description",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Description"
   },
   {
@@ -64,7 +66,6 @@
    "depends_on": "eval:(doc.employee_check==1)",
    "fieldname": "employee",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Employee Name",
    "options": "Employee",
    "unique": 1
@@ -105,9 +106,16 @@
    "fieldname": "workstation_check",
    "fieldtype": "Check",
    "label": "Workstation or Machine"
+  },
+  {
+   "description": "Working hour or holidays",
+   "fieldname": "available",
+   "fieldtype": "Link",
+   "label": "Available",
+   "options": "Frepple Calendar"
   }
  ],
- "modified": "2022-01-26 17:51:00.405039",
+ "modified": "2022-01-27 12:17:10.494585",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Resource",

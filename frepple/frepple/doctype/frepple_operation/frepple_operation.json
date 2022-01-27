@@ -9,6 +9,7 @@
   "item",
   "location",
   "type",
+  "priority",
   "duration_per_unit",
   "duration",
   "operation_owner"
@@ -16,15 +17,14 @@
  "fields": [
   {
    "fieldname": "operation",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Operation",
-   "options": "Operation",
    "reqd": 1,
    "unique": 1
   },
   {
-   "description": "Item produced by this operation.",
+   "description": "Item produced by this operation. Recommended to fill this field for operation type \"routing\"",
    "fieldname": "item",
    "fieldtype": "Link",
    "label": "Item",
@@ -40,6 +40,7 @@
   },
   {
    "default": "time_per",
+   "description": "Let BOM as routing type and the operation as time_per type",
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
@@ -59,14 +60,20 @@
    "label": "Duration"
   },
   {
-   "description": "Parent operation (which must be of type routing, alternate or split)",
+   "description": "BOM of the operations. Owner should be a operation with \"routing type\"",
    "fieldname": "operation_owner",
-   "fieldtype": "Link",
-   "label": "Owner",
-   "options": "Frepple Operation"
+   "fieldtype": "Data",
+   "label": "Owner"
+  },
+  {
+   "default": "1",
+   "description": "Define the order of operation in a routing. First operation start with 1.",
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority"
   }
  ],
- "modified": "2022-01-26 16:30:46.706594",
+ "modified": "2022-01-27 16:15:52.273773",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Operation",

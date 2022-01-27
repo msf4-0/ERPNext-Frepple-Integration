@@ -184,7 +184,7 @@ def get_data():
                     "type": "doctype",
                     "name": "Frepple Integration Data Fetching",
                     "label": "Frepple Integration Data Fetching",
-                    "onboard": 1,
+                    "onboard": 2,
                 },
             ]
         },

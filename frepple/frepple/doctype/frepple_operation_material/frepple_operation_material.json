@@ -1,5 +1,5 @@
 {
- "autoname": "format:{operation}-{item}",
+ "autoname": "format:{item}-{operation}",
  "creation": "2022-01-26 16:27:20.569455",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -41,7 +41,7 @@
    "label": "Quantity"
   }
  ],
- "modified": "2022-01-26 16:35:14.327755",
+ "modified": "2022-01-27 15:50:32.839293",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Operation Material",
