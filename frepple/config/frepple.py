@@ -162,6 +162,12 @@ def get_data():
                     "label": "Frepple Setting",
                     "onboard": 1,
                 },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Integration Data Fetching",
+                    "label": "Frepple Integration Data Fetching",
+                    "onboard": 1,
+                },
             ]
         },
 
