@@ -1,0 +1,18 @@
+{
+ "content": null,
+ "creation": "2022-01-27 10:07:57.282708",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2022-01-27 10:07:57.282708",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "purchase-order-page",
+ "owner": "Administrator",
+ "page_name": "Purchase Order Page",
+ "roles": [],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0
+}

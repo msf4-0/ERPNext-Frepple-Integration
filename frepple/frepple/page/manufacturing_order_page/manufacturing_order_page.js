@@ -1,33 +1,30 @@
-frappe.pages['frepple-test-page'].on_page_load = (wrapper) => {
+frappe.pages['manufacturing-order-page'].on_page_load = (wrapper) => {
 	const page = frappe.ui.make_app_page({
 		'parent': wrapper,
-		'title': 'This is frepple testing page',
+		'title': 'Frepple Manufacturing Order Page',
 		'single_column': true
 	});
-
-	new FreppleDashboard(page, wrapper);
+	new ManufacturingOrderPage(page, wrapper);
 }
 
-class FreppleDashboard {
+class ManufacturingOrderPage {
 	constructor(page, wrapper) {
 		this.currentDashboard = false;
 		this.wrapper = wrapper;
 		this.pageMain = $(page.main);
 		this.pageTitle = $(this.wrapper).find('div.title-text');
-
 		this.showIframe();
 	}
 
 	showIframe() {
 		this.getSettings().then(
 			(r) => {
-				this.WEBTOKEN = r.message;
-
-				if (this.WEBTOKEN) {					
+				this.URL = r.message;
+				if (this.URL) {					
 					// prepare html
 					const iFrameHtml = `
 						<iframe
-							src="http://localhost:5000?webtoken=${this.WEBTOKEN}"
+							src=${this.URL}
 							width="100%"
 							height="750"
 							marginwidth="0"
@@ -36,7 +33,6 @@ class FreppleDashboard {
 							scrolling="yes"
 						/>
 					`;
-
 					// append html to page
 					this.iFrame = $(iFrameHtml).appendTo(this.pageMain);
 				}
@@ -46,7 +42,7 @@ class FreppleDashboard {
 
 	getSettings() {
 		return frappe.call({
-			'method': 'frepple.frepple.doctype.frepple_test_page.frepple_test_page.get_iframe_url'
+			'method': 'frepple.frepple.doctype.manufacturing_order_page.manufacturing_order_page.get_iframe_url'
 		});
 	}
 }
