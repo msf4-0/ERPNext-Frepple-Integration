@@ -1,0 +1,108 @@
+{
+ "autoname": "format:{so_owner}-{#}",
+ "creation": "2022-01-27 22:40:20.370775",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "item_name",
+  "qty",
+  "location",
+  "customer",
+  "due",
+  "priority",
+  "status",
+  "so_owner"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Frepple Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Location",
+   "options": "Frepple Location",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Frepple Customer",
+   "reqd": 1
+  },
+  {
+   "description": "Delivery Date",
+   "fetch_from": "sales_order.delivery_date",
+   "fieldname": "due",
+   "fieldtype": "Datetime",
+   "label": "Due",
+   "reqd": 1
+  },
+  {
+   "default": "10",
+   "description": "0: Highest Priority. Higher number: Lower priority",
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority",
+   "reqd": 1
+  },
+  {
+   "default": "open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "inquiry\nquote\nopen\nclosed\ncanceled"
+  },
+  {
+   "fieldname": "so_owner",
+   "fieldtype": "Link",
+   "label": "Owner",
+   "options": "Sales Order",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item.description",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name"
+  }
+ ],
+ "modified": "2022-01-28 13:38:21.064024",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Demand",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

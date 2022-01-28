@@ -12,6 +12,8 @@ from datetime import time
 from datetime import timedelta
 from frappe.utils import add_to_date
 
+
+
 class FreppleIntegrationDataFetching(Document):
 	pass
 
@@ -33,7 +35,7 @@ def fetch_data(doc):
 
 	# Inventory
 	if doc["frepple_buffer"]:
-		fetch_buffer()
+		fetch_buffers()
 	# if doc["frepple_item_distribution"]:
 		# fetch_item_distribution()
 
@@ -63,15 +65,21 @@ def fetch_data(doc):
 		fetch_operations()
 		import_datas.append("Frepple Operation")
 	if doc["frepple_operation_material"]:
-	 	fetch_operation_materials()
-		# import_datas.append("Frepple Operation Materials")
+		fetch_operation_materials()
+		import_datas.append("Frepple Operation Materials")
+
 	if doc["frepple_operation_resource"]:
-		return fetch_operation_resources()
+		fetch_operation_resources()
 		import_datas.append("Frepple Operation Resource")
+
+	if doc["frepple_demand"]:
+		fetch_sales_orders()
+		import_datas.append("Frepple Demand")
 
 	# Output msg 
 	for import_data in import_datas:
 		frappe.msgprint(_("{0} is imported.").format(import_data))
+
 
 
 def fetch_items():
@@ -102,12 +110,37 @@ def fetch_customers():
 	# )
 
 def fetch_locations():
-	locations = frappe.db.sql("""SELECT name FROM `tabWarehouse`""",as_dict=1)
+	locations = frappe.db.sql("""SELECT name, company FROM `tabWarehouse`""",as_dict=1)
+	companys = frappe.db.sql("""SELECT name FROM `tabCompany`""",as_dict = 1)
+	
+	for company in companys:
+		if not frappe.db.exists("Frepple Location",company.name):
+			new_location = frappe.new_doc("Frepple Location")
+			new_location.warehouse = company.name
+			new_location.insert()
 	for location in locations:
 		if not frappe.db.exists("Frepple Location",location.name):
 			new_location = frappe.new_doc("Frepple Location")
 			new_location.warehouse = location.name
+			new_location.location_owner = location.company
 			new_location.insert()
+
+	
+
+def fetch_buffers():
+	bins = frappe.db.sql(
+		"""
+		SELECT warehouse, item_code,actual_qty FROM `tabBin`
+		""",
+		as_dict=1)
+	for bin in bins:
+		if not frappe.db.exists("Frepple Buffer",bin.item_code+"@"+bin.warehouse):
+			new_bin = frappe.new_doc("Frepple Buffer")
+			new_bin.item = bin.item_code
+			new_bin.location = bin.warehouse
+			new_bin.onhand = bin.actual_qty
+			new_bin.insert()
+	
 
 
 
@@ -197,13 +230,12 @@ def fetch_operations():
 		as_dict=1)
 	BOMs = frappe.db.sql(
 		"""
-		SELECT bom.name, bom.is_active, bom.is_default, bomop.operation, bomop.workstation, bomop.time_in_mins,bomit.item_code 
+		SELECT bom.name, bom.is_active, bom.is_default, bomop.operation, bomop.workstation,bomop.idx, bomop.time_in_mins,bomit.item_code 
 		FROM `tabBOM` bom, `tabBOM Operation` bomop,`tabBOM Item` bomit
 		WHERE bom.is_active = 1 and bom.is_default and bom.name = bomop.parent and bom.name = bomit.parent
 		""",
 		as_dict=1)
 	
-
 	for BOM in BOMs:
 		if not frappe.db.exists("Frepple Operation",BOM.name):
 			new_operation = frappe.new_doc("Frepple Operation")
@@ -223,6 +255,7 @@ def fetch_operations():
 			new_operation.operation_owner = BOM.name
 			new_operation.duration = time(0,0,0)
 			new_operation.duration_per_unit=add_to_date(datetime(1900,1,1,0,0,0),minutes=(BOM.time_in_mins),as_datetime=True).time() #get only the time
+			new_operation.priority = BOM.idx
 			new_operation.insert()
 
 
@@ -269,7 +302,7 @@ def fetch_operation_materials():
 				new_operation_material.operation = frepple_operations[0].name
 				new_operation_material.item = BOM.item_code
 				new_operation_material.type = "Start"
-				new_operation_material.quantity = BOM.qty
+				new_operation_material.quantity = BOM.qty * -1 #consumed item need to be negative
 				new_operation_material.insert()
 
 
@@ -304,36 +337,43 @@ def fetch_operation_resources():
 		""",
 	as_dict=1)
 
+
 	for BOM in BOMs:
-		if not frappe.db.exists("Frepple Operation Resource",BOM.operation+"@"+BOM.name):
-			new_doc = frappe.new_doc("Frepple Item")
+		if not frappe.db.exists("Frepple Operation Resource",BOM.workstation+"-"+BOM.operation+"@"+BOM.name):
+			new_doc = frappe.new_doc("Frepple Operation Resource")
 			new_doc.operation = BOM.operation+"@"+BOM.name
 			new_doc.resource = BOM.workstation
-		if frappe.db.exists("Frepple Resource",BOM.workstation) and frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
-			new_doc.insert()
+			if frappe.db.exists("Frepple Resource",BOM.workstation) and frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
+				new_doc.insert()
 
-	frepple_operations = frappe.db.sql(
+
+def fetch_sales_orders():
+	sales_orders = frappe.db.sql(
 		"""
-		SELECT name,type
-		FROM `tabFrepple Operation`
-		WHERE type = "time_per"
+		SELECT so.name, so.company, so.status, so.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
+		FROM `tabSales Order` so, `tabSales Order Item` soi
+		WHERE soi.parent = so.name and soi.work_order_qty < 1"
 		""",
 	as_dict=1)
-	print(BOMs)
-	# Get the workstation
+	print(sales_orders)
 
-
-	# BOMs = frappe.db.get_list('BOM',
-	# 	filters={
-	# 		'is_active': 1,
-	# 		"is_default": 1
-	# 	},
-	# )
-	# doc = frappe.get_doc("BOM",BOMs[0].name)
-
-	# return doc.operations
-	# # for BOM in BOMs:
-	# for row in doc.operations:
-	# 	d = frappe.get_doc('BOM Operation', row.name) #To access child doctype
-			
 		
+	for sales_order in sales_orders:
+		frepple_demand = frappe.db.sql(
+			"""
+			SELECT name  
+			FROM `tabFrepple Demand`
+			WHERE name like %s 
+			""",
+		(sales_order.name+'%'), as_dict=1)
+
+		if not len(frepple_demand):
+			new_demand = frappe.new_doc("Frepple Demand")
+			new_demand.item = sales_order.item_code
+			new_demand.qty = sales_order.qty
+			new_demand.location = sales_order.company
+			new_demand.customer = sales_order.customer
+			new_demand.due =  sales_order.delivery_date
+			new_demand.so_owner =  sales_order.name
+			# if frappe.db.exists("Frepple Resource",BOM.workstation) and frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
+			new_demand.insert()

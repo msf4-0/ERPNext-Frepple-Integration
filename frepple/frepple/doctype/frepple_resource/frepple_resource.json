@@ -50,10 +50,10 @@
    "label": "Description"
   },
   {
-   "default": "Operator",
    "description": "Owner defines the parent resource. Resources can be organized in a hierarchical tree.",
    "fieldname": "resource_owner",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Owner",
    "options": "Operator\nWorkstation"
   },
@@ -111,11 +111,12 @@
    "description": "Working hour or holidays",
    "fieldname": "available",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Available",
    "options": "Frepple Calendar"
   }
  ],
- "modified": "2022-01-27 12:17:10.494585",
+ "modified": "2022-01-28 16:52:28.552869",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Resource",

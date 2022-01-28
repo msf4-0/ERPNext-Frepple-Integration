@@ -8,21 +8,27 @@ def get_data():
             "items": [
                 {
                     "type": "doctype",
+                    "name": "Frepple Sales Order",
+                    "label": "Frepple Sales Order",
+                    "onboard": 1,
+                },
+                {
+                    "type": "doctype",
                     "name": "Frepple Item",
                     "label": "Frepple Item",
-                    "onboard": 1,
+                    "onboard": 2,
                 },
                 {
                     "type": "doctype",
                     "name": "Frepple Customer",
                     "label": "Frepple Customer",
-                    "onboard": 2,
+                    "onboard": 3,
                 },
                 {
                     "type": "doctype",
                     "name": "Frepple Location",
                     "label": "Frepple Location",
-                    "onboard": 3,
+                    "onboard": 4,
                 },
 
             ]
@@ -146,12 +152,12 @@ def get_data():
         {
             "label": _("Frepple Result"),
             "items": [
-                {
-                    "type": "doctype",
-                    "name": "Frepple Sales Order",
-                    "label": "Frepple Sales Order",
-                    "onboard": 1,
-                },
+                # {
+                #     "type": "doctype",
+                #     "name": "Frepple Sales Order",
+                #     "label": "Frepple Sales Order",
+                #     "onboard": 1,
+                # },
                 # {
                 #     "type": "doctype",
                 #     "name": "Frepple Manufacturing Order",
@@ -186,6 +192,19 @@ def get_data():
                     "label": "Frepple Integration Data Fetching",
                     "onboard": 2,
                 },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Data Export",
+                    "label": "Frepple Data Export",
+                    "onboard": 3,
+                },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Run Plan",
+                    "label": "Frepple Run Plan",
+                    "onboard": 4,
+                },
+
             ]
         },
 

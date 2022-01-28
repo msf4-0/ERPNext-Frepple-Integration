@@ -1,13 +1,10 @@
 // Copyright (c) 2022, Drayang Chua and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Frepple Integration Data Fetching', {
-	// refresh: function(frm) {
-
-	// }
-	get_data_for_frepple(frm){
+frappe.ui.form.on('Frepple Data Export', {
+	export_data_to_frepple(frm){
 		frm.call({
-			method:"fetch_data",
+			method:"export_data",
 			args:{
 				doc: frm.doc
 			},

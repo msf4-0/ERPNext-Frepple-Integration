@@ -1,0 +1,50 @@
+{
+ "creation": "2022-01-28 12:54:51.248266",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "run_the_plan_and_generate_the_result_here",
+  "run_plan",
+  "generate_result"
+ ],
+ "fields": [
+  {
+   "fieldname": "run_the_plan_and_generate_the_result_here",
+   "fieldtype": "Heading",
+   "label": "Run the plan and generate the result here."
+  },
+  {
+   "fieldname": "run_plan",
+   "fieldtype": "Button",
+   "label": "Run Plan"
+  },
+  {
+   "description": "Import \"Frepple Manufacturing Order\" and \"Purchase Order\" from Frepple. View more under Frepple Result.",
+   "fieldname": "generate_result",
+   "fieldtype": "Button",
+   "label": "Generate Result"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2022-01-28 12:56:20.159060",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Run Plan",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

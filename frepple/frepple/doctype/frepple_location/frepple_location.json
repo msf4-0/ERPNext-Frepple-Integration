@@ -6,27 +6,35 @@
  "engine": "InnoDB",
  "field_order": [
   "warehouse",
-  "available"
+  "available",
+  "location_owner"
  ],
  "fields": [
   {
    "description": "Define the working hour and holidays",
    "fieldname": "available",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Available",
    "options": "Frepple Calendar"
   },
   {
    "fieldname": "warehouse",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Name",
-   "options": "Warehouse",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "location_owner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Owner",
+   "options": "Frepple Location"
   }
  ],
- "modified": "2022-01-26 13:07:41.617641",
+ "modified": "2022-01-28 13:24:33.866918",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Location",

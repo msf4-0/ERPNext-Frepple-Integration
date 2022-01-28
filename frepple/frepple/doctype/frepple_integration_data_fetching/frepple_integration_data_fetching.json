@@ -26,10 +26,14 @@
   "frepple_additional_data_section",
   "frepple_calendar",
   "frepple_calendar_bucket",
+  "frepple_demand_section",
+  "frepple_demand",
   "section_break_10",
   "deselect_all",
   "select_all",
-  "get_data_for_frepple"
+  "get_data_for_frepple",
+  "notice_section",
+  "small_text_27"
  ],
  "fields": [
   {
@@ -112,6 +116,7 @@
    "label": "Tick on the following checkbox to choose the data to be fetched from EPRNext to Frepple Integration"
   },
   {
+   "description": "Only default BOM will be fetched.",
    "fieldname": "frepple_manufacturing_section",
    "fieldtype": "Section Break",
    "label": "Frepple Manufacturing"
@@ -181,10 +186,36 @@
    "fieldtype": "Check",
    "label": "Frepple Calendar Bucket",
    "read_only": 1
+  },
+  {
+   "default": "Import data do not include the following field:\n1. Calendar\n2. Calendar bucket\n3. Item distribution\n4. Item supplier\n5. Resource skill\n6. Human resources required for operation\nCreate the field on your own to ensure the Frepple Planning Algorithm is fully configured.",
+   "fieldname": "small_text_27",
+   "fieldtype": "HTML",
+   "label": "Notice",
+   "options": "Import data do not include the following field:\n<br>\n1. Calendar\n<br>\n2. Calendar bucket\n<br>\n3. Item distribution\n<br>\n4. Item supplier\n<br>\n5. Resource skill\n<br>\n6. Human resources required for operation\n<br>\nCreate the field on your own to ensure the Frepple Planning Algorithm is fully configured.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notice_section",
+   "fieldtype": "Section Break",
+   "label": "Notice"
+  },
+  {
+   "bold": 1,
+   "fieldname": "frepple_demand_section",
+   "fieldtype": "Section Break",
+   "label": "Frepple Demand"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "frepple_demand",
+   "fieldtype": "Check",
+   "label": "Frepple Demand"
   }
  ],
  "issingle": 1,
- "modified": "2022-01-27 13:24:24.693572",
+ "modified": "2022-01-28 11:34:47.117604",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Integration Data Fetching",

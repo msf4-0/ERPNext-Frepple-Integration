@@ -1,0 +1,97 @@
+{
+ "creation": "2022-01-27 23:00:00.988145",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reference",
+  "operation",
+  "status",
+  "quantity",
+  "completed_quantity",
+  "manufacture_time_section",
+  "start_date",
+  "column_break_8",
+  "end_date",
+  "section_break_10"
+ ],
+ "fields": [
+  {
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reference",
+   "reqd": 1
+  },
+  {
+   "description": "Correspond to BOM in ERPNext",
+   "fieldname": "operation",
+   "fieldtype": "Data",
+   "label": "Operation"
+  },
+  {
+   "description": "Item to manufacture",
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "proposed\napproved\nconfirmed\ncompleted\nclosed"
+  },
+  {
+   "fieldname": "completed_quantity",
+   "fieldtype": "Float",
+   "label": "Completed Quantity"
+  },
+  {
+   "fieldname": "manufacture_time_section",
+   "fieldtype": "Section Break",
+   "label": "Manufacture time"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Data",
+   "label": "End Date"
+  }
+ ],
+ "modified": "2022-01-27 23:06:14.522677",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Manufacturing Order",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
