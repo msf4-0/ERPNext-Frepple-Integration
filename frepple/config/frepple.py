@@ -161,17 +161,6 @@ def get_data():
             ]
         },
         {
-            "label": _("Frepple Page"),
-            "items": [
-                {
-                    "type": "page",
-                    "name": "frepple-test-page",
-                    "label": "Frepple Test Page",
-                    "onboard": 1
-                }
-            ]
-        },
-        {
             "label": _("Settings"),
             "items": [
                 {
@@ -188,6 +177,51 @@ def get_data():
                 },
             ]
         },
+        {
+            "label": _("Frepple Result Summary"),
+            "items": [
+                {
+                    "type": "page",
+                    "name": "manufacturing-order-page",
+                    "label": "Manufacturing Order",
+                    "onboard": 1
+                },
+                {
+                    "type": "page",
+                    "name": "purchase-order-page",
+                    "label": "Purchase Order",
+                    "onboard": 1
+                }
+            ]
+        },
+        {
+            "label": _("Frepple Report"),
+            "items": [
+                {
+                    "type": "page",
+                    "name": "resource-report-page",
+                    "label": "Resource Report",
+                    "onboard": 1
+                }
+            ]
+        },
+        {
+            "label": _("Customization"),
+            "items": [
+                {
+                    "type": "page",
+                    "name": "frepple-custom-page",
+                    "label": "Frepple Custom Page",
+                    "onboard": 1
+                },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Custom Page Settings",
+                    "label": "Frepple Custom Page Settings",
+                    "onboard": 1
+                }
+            ]
 
+        }
     ]
     return config
