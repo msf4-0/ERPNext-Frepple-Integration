@@ -12,6 +12,14 @@ class FreppleManufacturingOrder(Document):
 	pass
 
 @frappe.whitelist()
+def testing(names):
+	names = json.loads(names)
+	print(names)
+	for name in names:
+		mo = frappe.get_doc("Frepple Manufacturing Order", name)
+		print(mo)
+
+@frappe.whitelist()
 def generate_erp_wo(doc):
 	doc = json.loads(doc)
 	doc = frappe.get_doc("Frepple Manufacturing Order",doc["name"])
