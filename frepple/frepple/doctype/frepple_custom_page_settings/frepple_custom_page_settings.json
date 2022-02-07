@@ -12,7 +12,8 @@
   "column_break_4",
   "url",
   "iframe_height",
-  "show_navigation_bar"
+  "show_navigation_bar",
+  "frepple_settings"
  ],
  "fields": [
   {
@@ -48,6 +49,7 @@
   },
   {
    "description": "The shared secret between frePPLe and your application. (Can be found in djangosettings.py)",
+   "fetch_from": "frepple_settings.secret_key",
    "fieldname": "secret_key",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -73,9 +75,16 @@
    "fieldname": "iframe_height",
    "fieldtype": "Int",
    "label": "Iframe Height"
+  },
+  {
+   "fieldname": "frepple_settings",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Frepple Settings",
+   "options": "Frepple Settings"
   }
  ],
- "modified": "2022-01-27 21:40:53.729080",
+ "modified": "2022-02-07 10:01:51.490762",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Custom Page Settings",

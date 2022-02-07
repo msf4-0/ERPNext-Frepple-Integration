@@ -124,41 +124,6 @@ def generate_manufacturing_order(data):
 			new_doc.insert()
 			print(new_doc.name)
 
-# CHeck the erpnext work order status and get its correspond frepple manufacturing order status
-# ERPNExt -> Frepple
-def mo_status_e2f(status):
-	switcher={
-		"Draft":'proposed',
-		"Submitted":'confirmed',
-		"Not Started":'proposed',
-		"In Process":'confirmed',
-		"Stopped":'closed',
-		"Completed":'completed',
-		"Cancelled":'closed',	
-	}
-	return switcher.get(status,"proposed") #default is "proposed" status
-
-	'ERPNext'				'Frepple'
-	# Draft					proposed
-	# Submitted				confirmed
-	# Not Started			completed
-	# In Process			approved
-	# Stopped				cancelled
-	# Completed
-	# Cancelled
-
-# CHeck the erpnext work order status and get its correspond frepple manufacturing order status
-# Frepple -> ERPNExt
-def mo_status_f2e(status):
-	switcher={
-		"proposed":'Draft',
-		"confirmed":'Submitted',
-		# "approved":'',
-		"completed":'Completed',
-		"cancelled":'Cancelled',
-	}
-	return switcher.get(status,"proposed") #default is "proposed" status
-
 
 def import_purchase_order():
 	api = "purchaseorder"
@@ -190,53 +155,4 @@ def generate_purchase_order(data):
 			new_doc.quantity =i["quantity"]
 			new_doc.insert()
 			print(new_doc.name)
-
-# CHeck the erpnext purchase order status and get its correspond frepple purchase status
-# ERPNExt -> Frepple
-def po_status_e2f(status):
-	switcher={
-		"Draft":'proposed',
-		"On Hold":'approved',
-		"To Deliver and Bill":'confirmed',
-		"To Bill":'confirmed',
-		"To Deliver":'confirmed',
-		"Completed":'completed',
-		"Cancelled":'canceled',
-		"Closed":'closed',
-		"Delivered":'closed'
-		}
-	return switcher.get(status,"proposed")
-
-	'ERPNext'				'Frepple'
-	# Draft					proposed
-	# On Hold				approved
-	# To Deliver and Bill	confirmed
-	# To Bill				closed
-	# To Deliver			completed
-	# Completed
-	# Cancelled
-	# Closed
-	# Delivered
-
-# CHeck the erpnext purchase order status and get its correspond frepple purchase status
-# Frepple -> ERPNext
-def po_status_f2e(status):
-	switcher={
-		"proposed":'Draft',
-		# "approved":'',
-		"confirmed":'To Deliver and Bill',
-		"closed":'Closed',
-		"completed":'Completed',
-
-		}
-	return switcher.get(status,"inquiry")
-	switcher={
-		"proposed":'Draft',
-		# "approved":'',
-		"confirmed":'To Deliver and Bill',
-		"closed":'Closed',
-		"completed":'Completed',
-
-	}
-	return switcher.get(status,"Draft")
 

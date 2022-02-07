@@ -21,7 +21,6 @@
   {
    "fieldname": "reference",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Reference",
    "reqd": 1,
    "unique": 1
@@ -81,11 +80,12 @@
   {
    "fieldname": "erpnext_wo",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "ERPNext Work Order",
    "options": "Work Order"
   }
  ],
- "modified": "2022-02-04 14:10:41.683115",
+ "modified": "2022-02-07 10:54:05.486376",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Manufacturing Order",

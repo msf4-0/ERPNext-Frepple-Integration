@@ -67,11 +67,12 @@
   {
    "fieldname": "erpnext_po",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "ERPNext Purchase Order",
    "options": "Purchase Order"
   }
  ],
- "modified": "2022-02-04 13:42:28.782418",
+ "modified": "2022-02-07 11:01:13.059340",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Purchase Order",

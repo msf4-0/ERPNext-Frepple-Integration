@@ -9,13 +9,15 @@ from frappe.model.document import Document
 import jwt
 import time
 
-class ResourceReportPage(Document):
+class SupplyPathPage(Document):
 	pass
 
 @frappe.whitelist()
 def get_iframe_url():
-	doc = frappe.get_doc('Resource Report Page')
+	doc = frappe.get_doc('Supply Path Page')
 	doc_2 = frappe.get_doc('Frepple Settings')
+	demands = frappe.db.get_list('Frepple Demand')
+
 
 	WEBTOKEN = jwt.encode({
 		'exp': round(time.time()) + doc.expiration,    # Validity of the token
@@ -27,4 +29,4 @@ def get_iframe_url():
 	algorithm='HS256'
 	).decode('ascii')
 
-	return doc.url + '?webtoken=' + WEBTOKEN
+	return doc.url + demands[0].name +'/?webtoken=' + WEBTOKEN
