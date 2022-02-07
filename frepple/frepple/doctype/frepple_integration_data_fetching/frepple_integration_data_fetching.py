@@ -349,13 +349,25 @@ def fetch_operation_resources():
 
 
 def fetch_sales_orders():
+	# sales_order_names= frappe.db.sql(
+	# 	"""
+	# 	SELECT name 
+	# 	WHERE `tabSales Order`
+	# 	"""
+	# )
+	# name_condition=""
+	# for sales_order_name in sales_order_names:
+	# 		name_condition += "not like" + str(sales_order_name)
+	# 	if sales_order_name.idx != len(sales_order_names)
+	# 		name_condition += "and"
 	sales_orders = frappe.db.sql(
 		"""
-		SELECT so.name, so.company, so.status,so.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
+		SELECT so.name, so.company, so.status, soi.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
 		FROM `tabSales Order` so, `tabSales Order Item` soi
 		WHERE soi.parent = so.name and soi.work_order_qty < 1 and so.status = "To Deliver and Bill"
 		""",
 	as_dict=1)
+
 	locations = frappe.db.sql(
 		"""
 		SELECT name FROM `tabFrepple Location`
@@ -372,8 +384,7 @@ def fetch_sales_orders():
 			""",
 		(sales_order.name+'%'), as_dict=1)
 
-		print(sales_order)
-
+		deliver_date = sales_order.delivery_date
 		# Check the delivery date is none or not
 		if sales_order.delivery_date == None:
 			deliver_date= add_to_date(datetime.now(),days=(4),as_datetime=True).date() #set a default date
