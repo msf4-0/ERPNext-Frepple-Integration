@@ -5,7 +5,17 @@
  "engine": "InnoDB",
  "field_order": [
   "run_the_plan_and_generate_the_result_here",
+  "create_a_plan_section",
+  "plan_type_column",
+  "constraint",
+  "unconstraint",
+  "constraint_column",
+  "capacity",
+  "lead_time",
+  "release_fence",
+  "section_break_9",
   "run_plan",
+  "result_section",
   "generate_result"
  ],
  "fields": [
@@ -24,10 +34,65 @@
    "fieldname": "generate_result",
    "fieldtype": "Button",
    "label": "Generate Result"
+  },
+  {
+   "fieldname": "create_a_plan_section",
+   "fieldtype": "Section Break",
+   "label": "Create a plan"
+  },
+  {
+   "fieldname": "plan_type_column",
+   "fieldtype": "Column Break",
+   "label": "Plan Type"
+  },
+  {
+   "default": "1",
+   "fieldname": "constraint",
+   "fieldtype": "Check",
+   "label": "Constraint"
+  },
+  {
+   "default": "0",
+   "fieldname": "unconstraint",
+   "fieldtype": "Check",
+   "label": "Unconstraint"
+  },
+  {
+   "fieldname": "constraint_column",
+   "fieldtype": "Column Break",
+   "label": "Constraint"
+  },
+  {
+   "default": "1",
+   "fieldname": "capacity",
+   "fieldtype": "Check",
+   "label": "Capacity"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break",
+   "label": "Run Frepple Plan"
+  },
+  {
+   "default": "1",
+   "fieldname": "lead_time",
+   "fieldtype": "Check",
+   "label": "Lead time"
+  },
+  {
+   "default": "1",
+   "fieldname": "release_fence",
+   "fieldtype": "Check",
+   "label": "Release fence"
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "Result"
   }
  ],
  "issingle": 1,
- "modified": "2022-01-28 12:56:20.159060",
+ "modified": "2022-02-04 12:20:03.517728",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Run Plan",

@@ -70,10 +70,11 @@
    "description": "Define the order of operation in a routing. First operation start with 1.",
    "fieldname": "priority",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Priority"
   }
  ],
- "modified": "2022-01-27 16:15:52.273773",
+ "modified": "2022-01-31 14:32:27.010210",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Operation",

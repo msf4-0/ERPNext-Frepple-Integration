@@ -171,8 +171,8 @@ def get_data():
             "items": [
                 {
                     "type": "doctype",
-                    "name": "Frepple Setting",
-                    "label": "Frepple Setting",
+                    "name": "Frepple Settings",
+                    "label": "Frepple Settings",
                     "onboard": 1,
                 },
                 {
@@ -197,19 +197,31 @@ def get_data():
             ]
         },
         {
-            "label": _("Frepple Result Summary"),
+            "label": _("Frepple Result"),
             "items": [
+                {
+                    "type": "doctype",
+                    "name": "Frepple Manufacturing Order",
+                    "label": "Frepple Manufacturing Order",
+                    "onboard": 1,
+                },
                 {
                     "type": "page",
                     "name": "manufacturing-order-page",
-                    "label": "Manufacturing Order",
-                    "onboard": 1
+                    "label": "Frepple Manufacturing Order Summary",
+                    "onboard": 2,
+                },
+                {
+                    "type": "doctype",
+                    "name": "Frepple Purchase Order",
+                    "label": "Frepple Purchase Order",
+                    "onboard": 3,
                 },
                 {
                     "type": "page",
                     "name": "purchase-order-page",
-                    "label": "Purchase Order",
-                    "onboard": 1
+                    "label": "Frepple Purchase Order Page",
+                    "onboard": 4,
                 }
             ]
         },

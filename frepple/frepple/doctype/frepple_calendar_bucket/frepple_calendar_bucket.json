@@ -7,6 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "calendar",
+  "value",
+  "priority",
   "date_section",
   "start_datetime",
   "column_break_4",
@@ -116,9 +118,23 @@
    "fieldname": "sunday",
    "fieldtype": "Check",
    "label": "Sunday"
+  },
+  {
+   "default": "1",
+   "description": "Zero: Unavailable, Non-zero: Available",
+   "fieldname": "value",
+   "fieldtype": "Int",
+   "label": "Value"
+  },
+  {
+   "default": "10",
+   "description": "To define the priority of the calendar buckets in a calendar. Default is 10.",
+   "fieldname": "priority",
+   "fieldtype": "Float",
+   "label": "Priority"
   }
  ],
- "modified": "2022-01-27 10:11:07.731124",
+ "modified": "2022-01-31 15:20:48.376654",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Calendar Bucket",

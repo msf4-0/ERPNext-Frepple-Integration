@@ -1,4 +1,5 @@
 {
+ "autoname": "field:reference",
  "creation": "2022-01-27 23:00:00.988145",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -13,7 +14,8 @@
   "start_date",
   "column_break_8",
   "end_date",
-  "section_break_10"
+  "section_break_10",
+  "erpnext_wo"
  ],
  "fields": [
   {
@@ -21,13 +23,15 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Reference",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "description": "Correspond to BOM in ERPNext",
    "fieldname": "operation",
-   "fieldtype": "Data",
-   "label": "Operation"
+   "fieldtype": "Link",
+   "label": "Operation",
+   "options": "Frepple Operation"
   },
   {
    "description": "Item to manufacture",
@@ -40,6 +44,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "proposed\napproved\nconfirmed\ncompleted\nclosed"
   },
@@ -64,15 +69,23 @@
   {
    "fieldname": "start_date",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "Start Date"
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "End Date"
+  },
+  {
+   "fieldname": "erpnext_wo",
+   "fieldtype": "Link",
+   "label": "ERPNext Work Order",
+   "options": "Work Order"
   }
  ],
- "modified": "2022-01-27 23:06:14.522677",
+ "modified": "2022-02-04 14:10:41.683115",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Manufacturing Order",

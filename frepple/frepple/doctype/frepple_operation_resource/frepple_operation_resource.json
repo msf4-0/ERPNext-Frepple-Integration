@@ -44,6 +44,7 @@
    "description": "Skill needed for the operation. Only available to human resource.",
    "fieldname": "skill",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Skill",
    "options": "Frepple Skill"
   },
@@ -63,7 +64,7 @@
    "fieldtype": "Section Break"
   }
  ],
- "modified": "2022-01-27 17:47:06.669903",
+ "modified": "2022-01-31 12:34:01.988476",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Operation Resource",

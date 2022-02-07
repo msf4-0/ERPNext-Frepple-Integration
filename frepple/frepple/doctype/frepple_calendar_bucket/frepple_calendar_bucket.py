@@ -16,8 +16,6 @@ class FreppleCalendarBucket(Document):
 			doc= frappe.get_doc("Frepple Calendar",self.calendar)
 	
 	#	Need to add a condition check to prevent adding duplicate row 
-
-			
 			# calendar_bucket_list = doc.calendar_bucket
 			# for row in calendar_bucket_list
 			row = doc.append("calendar_bucket",{})

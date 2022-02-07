@@ -8,7 +8,8 @@
   "username",
   "password",
   "url",
-  "frepple_integration"
+  "frepple_integration",
+  "secret_key"
  ],
  "fields": [
   {
@@ -46,10 +47,16 @@
    "fieldname": "frepple_integration",
    "fieldtype": "Check",
    "label": "Frepple Integration"
+  },
+  {
+   "description": "To render the Frepple Page in ERPNext. Can be found under frepple djangosettings.py file.",
+   "fieldname": "secret_key",
+   "fieldtype": "Data",
+   "label": "Secret Key"
   }
  ],
  "issingle": 1,
- "modified": "2022-01-25 16:03:02.248920",
+ "modified": "2022-01-31 11:33:14.780865",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Settings",

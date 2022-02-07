@@ -19,7 +19,7 @@ frappe.ui.form.on('Frepple Operation Resource', {
 		else{
 			frm.toggle_enable(['resource'], true);
 			frm.set_value('resource',"" );
-
+			frm.set_value('skill',"" );
 		}
 
 	}

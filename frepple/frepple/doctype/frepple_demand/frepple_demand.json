@@ -42,6 +42,7 @@
   {
    "fieldname": "customer",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Customer",
    "options": "Frepple Customer",
    "reqd": 1
@@ -51,6 +52,7 @@
    "fetch_from": "sales_order.delivery_date",
    "fieldname": "due",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "Due",
    "reqd": 1
   },
@@ -83,7 +85,7 @@
    "label": "Item Name"
   }
  ],
- "modified": "2022-01-28 13:38:21.064024",
+ "modified": "2022-01-31 14:05:06.701190",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Demand",

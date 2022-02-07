@@ -7,6 +7,7 @@
  "field_order": [
   "operation",
   "item",
+  "item_name",
   "type",
   "quantity"
  ],
@@ -28,20 +29,28 @@
    "reqd": 1
   },
   {
-   "default": "Start",
+   "default": "start",
    "fieldname": "type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Type",
-   "options": "Start\nEnd\nBatch transfer"
+   "options": "start\nend\ntransfer_batch"
   },
   {
    "default": "1",
    "fieldname": "quantity",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Quantity"
+  },
+  {
+   "fetch_from": "item.description",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name"
   }
  ],
- "modified": "2022-01-27 15:50:32.839293",
+ "modified": "2022-01-31 14:23:16.684040",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Operation Material",

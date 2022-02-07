@@ -12,6 +12,13 @@ frappe.ui.form.on('Frepple Operation', {
 				]
 			}
 		});
+	},
+
+	type:function(frm){
+		if (frm.doc.type !== "time_per"){
+			frm.set_value('duration_per_unit', "00:00:00");
+			frm.refresh_field('duration_per_unit');
+		}
 	}
 })
 

@@ -230,7 +230,7 @@ def fetch_operations():
 		as_dict=1)
 	BOMs = frappe.db.sql(
 		"""
-		SELECT bom.name, bom.is_active, bom.is_default, bomop.operation, bomop.workstation,bomop.idx, bomop.time_in_mins,bomit.item_code 
+		SELECT bom.name,bom.item, bom.is_active, bom.is_default, bomop.operation, bomop.workstation,bomop.idx, bomop.time_in_mins,bomit.item_code 
 		FROM `tabBOM` bom, `tabBOM Operation` bomop,`tabBOM Item` bomit
 		WHERE bom.is_active = 1 and bom.is_default and bom.name = bomop.parent and bom.name = bomit.parent
 		""",
@@ -238,11 +238,12 @@ def fetch_operations():
 	
 	for BOM in BOMs:
 		if not frappe.db.exists("Frepple Operation",BOM.name):
+			print(BOM)
 			new_operation = frappe.new_doc("Frepple Operation")
 			new_operation.operation = BOM.name
 			new_operation.location = locations[0].name
 			new_operation.type = "routing"
-			new_operation.item = BOM.item_code
+			new_operation.item = BOM.item
 			new_operation.duration = time(0,0,0)
 			new_operation.priority = 1
 			new_operation.insert()
@@ -292,7 +293,7 @@ def fetch_operation_materials():
 				new_operation_material = frappe.new_doc("Frepple Operation Material")
 				new_operation_material.operation = frepple_operations[0].name
 				new_operation_material.item = BOM.item
-				new_operation_material.type = "End"
+				new_operation_material.type = "end"
 				new_operation_material.quantity = BOM.quantity
 				new_operation_material.insert()
 
@@ -301,7 +302,7 @@ def fetch_operation_materials():
 				new_operation_material = frappe.new_doc("Frepple Operation Material")
 				new_operation_material.operation = frepple_operations[0].name
 				new_operation_material.item = BOM.item_code
-				new_operation_material.type = "Start"
+				new_operation_material.type = "start"
 				new_operation_material.quantity = BOM.qty * -1 #consumed item need to be negative
 				new_operation_material.insert()
 
@@ -350,13 +351,17 @@ def fetch_operation_resources():
 def fetch_sales_orders():
 	sales_orders = frappe.db.sql(
 		"""
-		SELECT so.name, so.company, so.status, so.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
+		SELECT so.name, so.company, so.status,so.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
 		FROM `tabSales Order` so, `tabSales Order Item` soi
-		WHERE soi.parent = so.name and soi.work_order_qty < 1"
+		WHERE soi.parent = so.name and soi.work_order_qty < 1 and so.status = "To Deliver and Bill"
 		""",
 	as_dict=1)
-	print(sales_orders)
-
+	locations = frappe.db.sql(
+		"""
+		SELECT name FROM `tabFrepple Location`
+		WHERE name LIKE 'Work In Progress%%'
+		""",
+	as_dict=1)
 		
 	for sales_order in sales_orders:
 		frepple_demand = frappe.db.sql(
@@ -367,13 +372,48 @@ def fetch_sales_orders():
 			""",
 		(sales_order.name+'%'), as_dict=1)
 
+		print(sales_order)
+
+		# Check the delivery date is none or not
+		if sales_order.delivery_date == None:
+			deliver_date= add_to_date(datetime.now(),days=(4),as_datetime=True).date() #set a default date
+		
+		# CHeck the erpnext sales order status and get its correspond frepple demand status
+		status = so_status(sales_order.status)
+		
 		if not len(frepple_demand):
 			new_demand = frappe.new_doc("Frepple Demand")
 			new_demand.item = sales_order.item_code
 			new_demand.qty = sales_order.qty
-			new_demand.location = sales_order.company
+			# new_demand.location = sales_order.company #Cannot use company because in frepple, demand lcoation MUST 
+														# as the operation lcoation
+			new_demand.location = locations[0].name
 			new_demand.customer = sales_order.customer
-			new_demand.due =  sales_order.delivery_date
+			new_demand.due =  datetime.combine(deliver_date,time(0,0,0))
 			new_demand.so_owner =  sales_order.name
-			# if frappe.db.exists("Frepple Resource",BOM.workstation) and frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
+			new_demand.status = status
 			new_demand.insert()
+
+# CHeck the erpnext sales order status and get its correspond frepple demand status
+def so_status(status):
+	switcher={
+		"Draft":'inquiry',
+		"On Hold":'inquiry',
+		"To Deliver and Bill":'open',
+		"To Bill":'open',
+		"To Deliver":'open',
+		"Completed":'closed',
+		"Cancelled":'canceled',
+		"Closed":'closed',
+		}
+	return switcher.get(status,"inquiry")
+
+	'ERPNext'				'Frepple'
+	# Draft					inquiry
+	# On Hold				quote
+	# To Deliver and Bill	open
+	# To Bill				closed
+	# To Deliver			cancelled
+	# Completed
+	# Cancelled
+	# Closed

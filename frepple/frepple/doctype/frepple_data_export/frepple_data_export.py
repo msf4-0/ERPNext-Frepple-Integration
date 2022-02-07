@@ -31,9 +31,10 @@ def export_data(doc):
 	#Additional data
 	if doc["frepple_calendar"]:
 		export_calendars()
-
+		import_datas.append("Frepple Calendar")
 	if doc["frepple_calendar_bucket"]:
 		export_calendar_buckets()
+		import_datas.append("Frepple Calendar Bucket")
 
 	# Sales
 	if doc["frepple_item"]:
@@ -67,26 +68,26 @@ def export_data(doc):
 
 	# Purchasing
 	if doc["frepple_supplier"]:
-		return export_suppliers()
+		export_suppliers()
 		import_datas.append("Frepple Supplier")
 	if doc["frepple_item_supplier"]:
-		return export_item_suppliers()
+		export_item_suppliers()
 		import_datas.append("Frepple Item Supplier")
 	
 	# Manufacturing
 	if doc["frepple_operation"]:
-		return export_operations()
+		export_operations()
 		import_datas.append("Frepple Operation")
 	if doc["frepple_operation_material"]:
-		return export_operation_materials()
+		export_operation_materials()
 		import_datas.append("Frepple Operation Materials")
 
 	if doc["frepple_operation_resource"]:
-		return export_operation_resources()
+		export_operation_resources()
 		import_datas.append("Frepple Operation Resource")
 
 	if doc["frepple_demand"]:
-		return export_sales_orders()
+		export_sales_orders()
 		import_datas.append("Frepple Demand")
 
 	# Output msg 
@@ -118,6 +119,63 @@ def get_frepple_params(api=None,filter = None):
 	print(url+ "-------------------------------------------------------------------------")
 
 	return url,headers
+
+
+def export_calendars():
+	api = "calendar"
+	url,headers = get_frepple_params(api=api,filter=None)
+
+	calendars = frappe.db.sql(
+		"""
+		SELECT calendar_name,default_value 
+		FROM `tabFrepple Calendar`""",
+		as_dict=1
+	)
+
+	for calendar in calendars:
+		data = json.dumps({
+			"name": calendar.calendar_name,
+			"defaultvalue":calendar.default_value
+		})
+		output = make_post_request(url,headers=headers, data=data)
+	
+	return output
+
+def export_calendar_buckets():
+	api = "calendarbucket"
+	url,headers = get_frepple_params(api=api,filter=None)
+
+	calendar_buckets = frappe.db.sql(
+		"""
+		SELECT calendar,value,priority, timestamp(start_datetime) as "start_datetime",timestamp(end_datetime) as "end_datetime",
+		timestamp(start_time) as "start_time",timestamp(end_time) as "end_time",
+		monday, tuesday, wednesday, thursday, friday, saturday, sunday
+		FROM `tabFrepple Calendar Bucket`""",
+		as_dict=1
+	)
+
+	for calendar_bucket in calendar_buckets:
+		print(calendar_bucket)
+		print(calendar_bucket.start_datetime.isoformat())
+		data = json.dumps({
+			"calendar": calendar_bucket.calendar,
+			"startdate": calendar_bucket.start_datetime.isoformat(),
+			"enddate":calendar_bucket.end_datetime.isoformat() ,
+			"value": calendar_bucket.value,
+			"priority": calendar_bucket.priority,
+			"monday": "true" if calendar_bucket.monday else "false",
+			"tuesday": "true" if calendar_bucket.tuesday else "false",
+			"wednesday": "true" if calendar_bucket.wednesday else "false",
+			"thursday": "true" if calendar_bucket.thursday else "false",
+			"friday": "true" if calendar_bucket.friday else "false",
+			"saturday": "true" if calendar_bucket.saturday else "false",
+			"sunday": "true" if calendar_bucket.sunday else "false",
+			"starttime": str(calendar_bucket.start_time.time()),
+			"endtime":str(calendar_bucket.end_time.time())
+		})
+		output = make_post_request(url,headers=headers, data=data)
+	
+	return output
 
 def export_items():
 	api = "item" 
@@ -248,10 +306,15 @@ def export_resources():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 
+		if resource.available:
+			available = resource.available
+		else:
+			available = "null"
+		
 		'''Add the actual employee to frepple'''
 		data = json.dumps({
 			"name": resource.name1,
-			# "available":resource.available,
+			"available":"null",
 			"type":resource.type,
 			"maximum":resource.maximum,
 			"description":resource.description,
@@ -313,13 +376,37 @@ def export_suppliers():
 		output = make_post_request(url,headers=headers, data=data)
 		
 ''' Under progress'''
-# def export_supplier_items():
-# 	suppliers = frappe.db.sql("""SELECT name FROM `tabSupplier`""",as_dict=1)
-# 	for supplier in suppliers:
-# 		if not frappe.db.exists("Frepple Supplier",supplier.name):
-# 			new_supplier = frappe.new_doc("Frepple Supplier")
-# 			new_supplier.supplier = supplier.name
-# 			new_supplier.insert()
+def export_item_suppliers():
+	api = "itemsupplier"
+	url,headers = get_frepple_params(api=api,filter=None)
+	item_suppliers = frappe.db.sql(
+		"""
+		SELECT supplier, item, supplier_cost, day, timestamp(time) as "time"
+		FROM `tabFrepple Item Supplier`
+		""",
+	as_dict=1)
+	
+	#timestamp() sql method give us datetime type. So we can use datetime method time() to get time
+	# date() to get date 
+
+	for item_supplier in item_suppliers:
+		if item_supplier.time:
+			time = str(item_supplier.time.time())
+		else:
+			time = "null"
+
+		print(item_supplier)
+		# print(str(item_supplier.day)+" "+str(item_supplier.time.time()))
+		data = json.dumps({
+			"supplier":item_supplier.supplier,
+			"item":item_supplier.item,
+			"cost":item_supplier.supplier_cost,
+			"leadtime":str(item_supplier.day)+" "+str(item_supplier.time.time())
+			# "duration_per":(datetime(1900,1,1,0,0,0)+ operation.duration_per_unit).time(), 
+		})
+
+		output = make_post_request(url,headers=headers, data=data)
+		
 
 
 def export_operations():
@@ -328,7 +415,7 @@ def export_operations():
 	
 	routing_operations = frappe.db.sql(
 		"""
-		SELECT operation, item, location, type, priority,timestamp(duration_per_unit) as "duration_per_unit", duration,operation_owner
+		SELECT operation, item, location, type, priority,timestamp(duration_per_unit) as "duration_per_unit", timestamp(duration) as "duration",operation_owner
 		FROM `tabFrepple Operation`
 		WHERE type = "routing"
 		""",
@@ -337,7 +424,11 @@ def export_operations():
 	print(routing_operations)
 	for operation in routing_operations:
 	
-
+		if operation.duration:
+			duration = str(operation.duration.time())
+		else:
+			duration = "null"
+		
 		data = json.dumps({
 			"name":operation.operation,
 			"item":operation.item,
@@ -345,7 +436,7 @@ def export_operations():
 			"type":operation.type,
 			"priority":operation.priority,
 			# "duration_per":(datetime(1900,1,1,0,0,0)+ operation.duration_per_unit).time(), 
-			# "duration":operation.duration,
+			"duration":duration,
 			
 		})
 		
@@ -353,18 +444,19 @@ def export_operations():
 	
 	time_per_operations = frappe.db.sql(
 		"""
-		SELECT operation, item, location, type, priority,timestamp(duration_per_unit) as "duration_per_unit", duration,operation_owner
+		SELECT operation, item, location, type, priority,timestamp(duration_per_unit) as "duration_per_unit", timestamp(duration) as "duration",operation_owner
 		FROM `tabFrepple Operation`
 		WHERE type = "time_per"
 		""",
 	as_dict=1)
 	
 	for operation in time_per_operations:
-		# print(operation)
-		# print(str(operation.duration_per_unit.time()))
-		# print(operation.item)
-		# abc = operation.item if operation.item else " "
-		# print(abc)
+
+		print(type(operation.duration_per_unit))
+		if operation.duration:
+			duration = str(operation.duration.time())
+		else:
+			duration = "null"
 
 		data = json.dumps({
 			"name":operation.operation,
@@ -373,7 +465,7 @@ def export_operations():
 			"location":operation.location,
 			# "duration_per":(datetime(1900,1,1,0,0,0)+ operation.duration_per_unit).time(), 
 			"duration_per":str(operation.duration_per_unit.time()),
-			# "duration":operation.duration,
+			"duration":duration,
 			"owner":operation.operation_owner
 		})
 		output = make_post_request(url,headers=headers, data=data)
@@ -381,112 +473,121 @@ def export_operations():
 	return output
 
 def export_operation_materials():
-	BOMs = frappe.db.sql(
+	api = "operationmaterial"
+	url,headers = get_frepple_params(api=api,filter=None)
+
+	materials = frappe.db.sql(
 		"""
-		SELECT bom.name, bom.item,bom.quantity, bom.transfer_material_against, bom.is_active, bom.is_default,bomop.operation,bomit.item_code,bomit.qty 
-		FROM `tabBOM` bom, `tabBOM Operation` bomop,`tabBOM Item` bomit
-		WHERE bom.is_active = 1 and bom.is_default=1 and bom.name = bomop.parent and bom.name = bomit.parent
+		SELECT operation, item, quantity, type
+		FROM `tabFrepple Operation Material`
 		""",
 	as_dict=1)
-	frepple_operations = frappe.db.sql(
-		"""
-		SELECT name,type
-		FROM `tabFrepple Operation`
-		WHERE type = "time_per"
-		""",
-	as_dict=1)
-
-
-	for BOM in BOMs:
-		if (BOM.transfer_material_against == "Work Order"): #let the first operation consumed raw material and produce product
-			# for item in BOM.item_code:
-			# For product which is being produced
-			if not frappe.db.exists("Frepple Operation Material",BOM.item+"-"+frepple_operations[0].name):
-				new_operation_material = frappe.new_doc("Frepple Operation Material")
-				new_operation_material.operation = frepple_operations[0].name
-				new_operation_material.item = BOM.item
-				new_operation_material.type = "End"
-				new_operation_material.quantity = BOM.quantity
-				new_operation_material.insert()
-
-			# For raw materials which is being consumed
-			if not frappe.db.exists("Frepple Operation Material",BOM.item_code+"-"+frepple_operations[0].name):
-				new_operation_material = frappe.new_doc("Frepple Operation Material")
-				new_operation_material.operation = frepple_operations[0].name
-				new_operation_material.item = BOM.item_code
-				new_operation_material.type = "Start"
-				new_operation_material.quantity = BOM.qty * -1 #consumed item need to be negative
-				new_operation_material.insert()
-
-
-	''' NOT YET CONSIDER the case if material transfer type is "JOB card" where each operation got their own type'''
-		# if (BOM.transfer_material_against == "Job Card"): #assign material to the correspond operation
-
-		# if not frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
-		# 	new_operation = frappe.new_doc("Frepple Operation")
-		# 	new_operation.operation = BOM.operation+"@"+BOM.name
-		# 	new_operation.location = locations[0].name
-		# 	new_operation.type = "time_per"
-		# 	new_operation.operation_owner = BOM.name
-		# 	new_operation.duration = time(0,0,0)
-		# 	new_operation.duration_per_unit=add_to_date(datetime(1900,1,1,0,0,0),minutes=(BOM.time_in_mins),as_datetime=True).time() #get only the time
-		# 	new_operation.insert()
-
-
-
-	# for BOM in BOMs:
-	# 	if not frappe.db.exists("Frepple Operation",BOMs.name):
-	# 		new_operation = frappe.new_doc("Frepple Operation")
-			
-	# 		new_operation.insert()
+	
+	for material in materials:
+		print(material)
+		data = json.dumps({
+			"operation":material.operation,
+			"item":material.item,
+			"quantity":material.quantity,
+			"type":material.type
+		})
+		output = make_post_request(url,headers=headers, data=data)
 
 
 def export_operation_resources():
-	BOMs = frappe.db.sql(
+	api = "operationresource"
+	url,headers = get_frepple_params(api=api,filter=None)
+
+	employee_resources = frappe.db.sql(
 		"""
-		SELECT bom.name, bom.is_active, bom.is_default, bomop.operation, bomop.workstation 
-		FROM `tabBOM` bom, `tabBOM Operation` bomop
-		WHERE bom.is_active = 1 and bom.is_default=1 and bomop.parent = bom.name
+		SELECT operation,employee_check,resource,quantity,skill 
+		FROM `tabFrepple Operation Resource`
+		WHERE employee_check = 1
 		""",
 	as_dict=1)
 
+	for resource in employee_resources:
+		print(resource)
+		# if HUman Resource, then we let resource = "Operator"
+		data = json.dumps({
+			"operation":resource.operation,
+			"resource":"Operator",
+			"quantity":resource.quantity,
+			"skill":resource.skill
+		})
+		output = make_post_request(url,headers=headers, data=data)
 
-	for BOM in BOMs:
-		if not frappe.db.exists("Frepple Operation Resource",BOM.workstation+"-"+BOM.operation+"@"+BOM.name):
-			new_doc = frappe.new_doc("Frepple Operation Resource")
-			new_doc.operation = BOM.operation+"@"+BOM.name
-			new_doc.resource = BOM.workstation
-			if frappe.db.exists("Frepple Resource",BOM.workstation) and frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
-				new_doc.insert()
+	workstation_resources = frappe.db.sql(
+		"""
+		SELECT operation,employee_check,resource,quantity 
+		FROM `tabFrepple Operation Resource`
+		WHERE employee_check = 0
+		""",
+	as_dict=1)
 
+	for resource in workstation_resources:
+		print(resource)
+		data = json.dumps({
+			"operation":resource.operation,
+			"resource":resource.resource,
+			"quantity":resource.quantity,
+		})
+		output = make_post_request(url,headers=headers, data=data)
 
 def export_sales_orders():
+	api = "demand" #equivalent sales order
+	url,headers = get_frepple_params(api=api,filter=None)
+	
 	sales_orders = frappe.db.sql(
 		"""
-		SELECT so.name, so.company, so.status, so.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
-		FROM `tabSales Order` so, `tabSales Order Item` soi
-		WHERE soi.parent = so.name and soi.work_order_qty < 1"
+		SELECT name,item,item_name,qty,location,customer, timestamp(due) as "due",priority,status,so_owner
+		FROM `tabFrepple Demand`
 		""",
 	as_dict=1)
-	print(sales_orders)
 
 		
 	for sales_order in sales_orders:
-		frepple_demand = frappe.db.sql(
-			"""
-			SELECT name  
-			FROM `tabFrepple Demand`
-			WHERE name like %s 
-			""",
-		(sales_order.name+'%'), as_dict=1)
+		print(sales_order)
+		data = json.dumps({
+			"name": sales_order.name,
+			"description": sales_order.item_name + " ordered by " + sales_order.customer, #default
+			"item": sales_order.item,
+			"customer": sales_order.customer,
+			"location": sales_order.location,
+			"due":  sales_order.due.isoformat(),
+			"status": sales_order.status,
+			"quantity": sales_order.qty,
+			"priority": sales_order.priority
+		})
 
-		if not len(frepple_demand):
-			new_demand = frappe.new_doc("Frepple Demand")
-			new_demand.item = sales_order.item_code
-			new_demand.qty = sales_order.qty
-			new_demand.location = sales_order.company
-			new_demand.customer = sales_order.customer
-			new_demand.due =  sales_order.delivery_date
-			new_demand.so_owner =  sales_order.name
-			# if frappe.db.exists("Frepple Resource",BOM.workstation) and frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
-			new_demand.insert()
+		output = make_post_request(url,headers=headers, data=data)
+
+
+"""On going"""
+# def export_manufacturing_orders():
+# 	api = "manufacturingorder" #equivalent work order
+# 	url,headers = get_frepple_params(api=api,filter=None)
+	
+# 	sales_orders = frappe.db.sql(
+# 		"""
+# 		SELECT reference,operation,status,qty,location,customer, timestamp(due) as "due",priority,status,so_owner
+# 		FROM `tabFrepple Manufacturing Order`
+# 		""",
+# 	as_dict=1)
+
+		
+# 	for sales_order in sales_orders:
+# 		print(sales_order)
+# 		data = json.dumps({
+# 			"name": sales_order.name,
+# 			"description": sales_order.item_name + " ordered by " + sales_order.customer, #default
+# 			"item": sales_order.item,
+# 			"customer": sales_order.customer,
+# 			"location": sales_order.location,
+# 			"due":  sales_order.due.isoformat(),
+# 			"status": sales_order.status,
+# 			"quantity": sales_order.qty,
+# 			"priority": sales_order.priority
+# 		})
+
+# 		output = make_post_request(url,headers=headers, data=data)

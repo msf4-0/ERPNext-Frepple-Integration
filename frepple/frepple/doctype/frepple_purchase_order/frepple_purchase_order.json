@@ -1,0 +1,96 @@
+{
+ "autoname": "field:reference",
+ "creation": "2022-01-31 11:44:49.237254",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reference",
+  "supplier",
+  "ordering_date",
+  "receive_date",
+  "item",
+  "quantity",
+  "status",
+  "erpnext_po"
+ ],
+ "fields": [
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supplier",
+   "options": "Frepple Supplier",
+   "reqd": 1
+  },
+  {
+   "description": "Transaction Date",
+   "fieldname": "ordering_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Ordering Date"
+  },
+  {
+   "description": "Schedule Date",
+   "fieldname": "receive_date",
+   "fieldtype": "Datetime",
+   "label": "Receive Date"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Frepple Item",
+   "reqd": 1
+  },
+  {
+   "description": "Purchase Quantity",
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "proposed\napproved\nconfirmed\ncompleted\nclosed"
+  },
+  {
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "label": "Reference",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "erpnext_po",
+   "fieldtype": "Link",
+   "label": "ERPNext Purchase Order",
+   "options": "Purchase Order"
+  }
+ ],
+ "modified": "2022-02-04 13:42:28.782418",
+ "modified_by": "Administrator",
+ "module": "Frepple",
+ "name": "Frepple Purchase Order",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
