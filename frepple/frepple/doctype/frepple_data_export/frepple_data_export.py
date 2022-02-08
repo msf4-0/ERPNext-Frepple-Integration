@@ -385,7 +385,12 @@ def export_suppliers():
 	url,headers = get_frepple_params(api=api,filter=None)
 	
 
-	suppliers = frappe.db.sql("""SELECT supplier FROM `tabFrepple Supplier`""",as_dict=1)
+	suppliers = frappe.db.sql(
+		"""
+		SELECT supplier 
+		FROM `tabFrepple Supplier`
+		""",
+	as_dict=1)
 	for supplier in suppliers:
 		data = json.dumps({
 			"name": supplier.supplier,

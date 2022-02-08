@@ -389,7 +389,7 @@ def fetch_sales_orders():
 		# CHeck the erpnext sales order status and get its correspond frepple demand status
 		status = so_status_e2f(sales_order.status)
 		
-		if not len(frepple_demand): #If we have more than 1 element in the array, mean the demand already existed
+		if not len(frepple_demands): #If we have more than 1 element in the array, mean the demand already existed
 			new_demand = frappe.new_doc("Frepple Demand")
 			new_demand.item = sales_order.item_code
 			new_demand.qty = sales_order.qty

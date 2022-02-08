@@ -23,8 +23,7 @@
    "fetch_from": "item.item_name",
    "fieldname": "description",
    "fieldtype": "Data",
-   "label": "Description",
-   "unique": 1
+   "label": "Description"
   },
   {
    "fieldname": "item",
@@ -58,7 +57,7 @@
    "options": "Item Group"
   }
  ],
- "modified": "2022-01-26 17:55:01.681253",
+ "modified": "2022-02-08 17:18:32.472866",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Item",
