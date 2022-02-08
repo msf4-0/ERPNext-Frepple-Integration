@@ -376,7 +376,7 @@ def export_resource_skills():
 			"priority":5-employee_skill.priority
 		})
 
-	output = make_post_request(url,headers=headers, data=data)
+		output = make_post_request(url,headers=headers, data=data)
 
 	return output
 	
