@@ -233,28 +233,35 @@ def export_locations():
 
 	locations = frappe.db.sql("""SELECT warehouse, location_owner, available FROM `tabFrepple Location`""",as_dict=1)
 	
-	print(locations)
 	for location in locations:
 		print(location)
+
+		if location.available:
+			available = location.available
+		else:
+			available = None
+
 		# If the location is a child location
 		if (location.location_owner != None):
+			# Create the company document in frepple first
 			data = json.dumps({
 				"name": location.location_owner,
-				# "available":location.available
 			})
 			output = make_post_request(url,headers=headers, data=data)
 
 			data = json.dumps({
 				"name": location.warehouse,
-				# "available":location.available,
+				"available":available,
 				"owner":location.location_owner, 
 			})
 			output = make_post_request(url,headers=headers, data=data)
+
 		# If the location is a parent
-		if (location.location_owner == None):
+		else:
+			print(available)
 			data = json.dumps({
 				"name": location.warehouse,
-				# "available":location.available
+				"available":available
 			})
 			output = make_post_request(url,headers=headers, data=data)
 
@@ -283,8 +290,26 @@ def export_buffers():
 
 
 def export_item_distribution():
+	api = "itemdistribution"
+	url,headers = get_frepple_params(api=api,filter=None)
 
-	return True
+
+	distributions = frappe.db.sql(
+		"""
+		SELECT item,origin,destination,day,timestamp(time) as "time" 
+		FROM `tabFrepple Item Distribution`
+		""",
+	as_dict=1)
+
+	for distribution in distributions:
+		print(distribution)
+		data = json.dumps({
+			"item": distribution.item,
+			"origin":distribution.origin,
+			"location":distribution.destination,
+			"leadtime":str(distribution.day)+" "+str(distribution.time.time())
+		})
+		output = make_post_request(url,headers=headers, data=data)
 
 
 def export_resources():
@@ -309,19 +334,17 @@ def export_resources():
 		if resource.available:
 			available = resource.available
 		else:
-			available = "null"
+			available = None
 		
 		'''Add the actual employee to frepple'''
 		data = json.dumps({
 			"name": resource.name1,
-			"available":"null",
+			"available":available,
 			"type":resource.type,
 			"maximum":resource.maximum,
 			"description":resource.description,
 			"location":resource.location,
 			"owner":resource.resource_owner #default
-			
-		
 		})
 		output = make_post_request(url,headers=headers, data=data)
 	
@@ -340,9 +363,6 @@ def export_skills():
 
 		output = make_post_request(url,headers=headers, data=data)
 
-
-
-
 def export_resource_skills():
 	api = "resourceskill" #equivalent to customer doctype
 	url,headers = get_frepple_params(api=api,filter=None)
@@ -360,8 +380,6 @@ def export_resource_skills():
 
 	return output
 	
-
-
 def export_suppliers():
 	api = "supplier" #equivalent to customer doctype		
 	url,headers = get_frepple_params(api=api,filter=None)
@@ -375,7 +393,7 @@ def export_suppliers():
 
 		output = make_post_request(url,headers=headers, data=data)
 		
-''' Under progress'''
+
 def export_item_suppliers():
 	api = "itemsupplier"
 	url,headers = get_frepple_params(api=api,filter=None)
@@ -390,10 +408,10 @@ def export_item_suppliers():
 	# date() to get date 
 
 	for item_supplier in item_suppliers:
-		if item_supplier.time:
-			time = str(item_supplier.time.time())
-		else:
-			time = "null"
+		# if item_supplier.time:
+		# 	time = str(item_supplier.time.time())
+		# else:
+		# 	time = "null"
 
 		print(item_supplier)
 		# print(str(item_supplier.day)+" "+str(item_supplier.time.time()))
@@ -563,7 +581,7 @@ def export_sales_orders():
 		output = make_post_request(url,headers=headers, data=data)
 
 
-"""On going"""
+
 # def export_manufacturing_orders():
 # 	api = "manufacturingorder" #equivalent work order
 # 	url,headers = get_frepple_params(api=api,filter=None)

@@ -15,6 +15,7 @@
   "release_fence",
   "section_break_9",
   "run_plan",
+  "update_frepple",
   "result_section",
   "generate_result"
  ],
@@ -89,10 +90,16 @@
    "fieldname": "result_section",
    "fieldtype": "Section Break",
    "label": "Result"
+  },
+  {
+   "default": "0",
+   "fieldname": "update_frepple",
+   "fieldtype": "Check",
+   "label": "Update demand, manufacturing order and purchase order on frepple side"
   }
  ],
  "issingle": 1,
- "modified": "2022-02-04 12:20:03.517728",
+ "modified": "2022-02-08 11:46:30.134147",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Run Plan",

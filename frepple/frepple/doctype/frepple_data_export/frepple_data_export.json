@@ -79,8 +79,7 @@
    "default": "0",
    "fieldname": "frepple_item_distribution",
    "fieldtype": "Check",
-   "label": "Frepple Item Distribution",
-   "read_only": 1
+   "label": "Frepple Item Distribution"
   },
   {
    "fieldname": "frepple_capacity_section",
@@ -210,7 +209,7 @@
   }
  ],
  "issingle": 1,
- "modified": "2022-01-31 14:13:10.334002",
+ "modified": "2022-02-07 17:56:42.358300",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Data Export",

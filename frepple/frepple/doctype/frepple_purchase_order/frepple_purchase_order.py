@@ -59,24 +59,25 @@ def generate_erp_po(doc):
 @frappe.whitelist()
 def update_frepple_po_status(doc):
 	doc = json.loads(doc)
-	erpnext_po = frappe.get_doc("Purchase Order",doc["name"]) #ERPNext purchase order
+	if (frappe.get_doc("Frepple Settings").frepple_integration) and doc["docstatus"]:
+		erpnext_po = frappe.get_doc("Purchase Order",doc["name"]) #ERPNext purchase order
 
-	pos = frappe.db.sql(
-		"""
-		SELECT name,erpnext_po
-		FROM `tabFrepple Purchase Order`
-		WHERE erpnext_po = %s
-		""",
-	erpnext_po.name,as_dict=1)
+		pos = frappe.db.sql(
+			"""
+			SELECT name,erpnext_po
+			FROM `tabFrepple Purchase Order`
+			WHERE erpnext_po = %s
+			""",
+		erpnext_po.name,as_dict=1)
 
-	for po in pos:
-		# mo = frappe.db.get_list('Frepple Manufacturing Order', filters={
-		# 	'erpnext_wo': [wo.name]	
-		# }) # Get the frepple manufacturing order with owner work order match
+		for po in pos:
+			# mo = frappe.db.get_list('Frepple Manufacturing Order', filters={
+			# 	'erpnext_wo': [wo.name]	
+			# }) # Get the frepple manufacturing order with owner work order match
 
-		# print(mo[0])
-		frappe.db.set_value('Frepple Purchase Order', po.name, 'status',po_status_e2f(erpnext_po.status)) #Update the status
-		print(po_status_e2f(erpnext_po.status))
+			# print(mo[0])
+			frappe.db.set_value('Frepple Purchase Order', po.name, 'status',po_status_e2f(erpnext_po.status)) #Update the status
+			print(po_status_e2f(erpnext_po.status))
 
 # CHeck the erpnext purchase order status and get its correspond frepple purchase status
 # ERPNExt -> Frepple

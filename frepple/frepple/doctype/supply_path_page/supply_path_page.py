@@ -24,8 +24,7 @@ def get_iframe_url():
 		'user': doc.user,                   	# User name
 		'navbar': True if doc.show_navigation_bar else False                     # Whether or not frePPLe should render its navigation bar or not
 	},
-	# doc.secret_key,    # The shared secret between frePPLe and your application
-	doc_2.secret_key,
+	doc_2.secret_key, # The shared secret between frePPLe and your application
 	algorithm='HS256'
 	).decode('ascii')
 

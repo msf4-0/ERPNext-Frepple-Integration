@@ -7,7 +7,6 @@
   "expiration",
   "user",
   "show_navigation_bar",
-  "secret_key",
   "url"
  ],
  "fields": [
@@ -31,11 +30,6 @@
    "label": "Show Navigation Bar"
   },
   {
-   "fieldname": "secret_key",
-   "fieldtype": "Data",
-   "label": "Secret Key"
-  },
-  {
    "default": "http://localhost:5000/data/input/operationplanresource/",
    "description": "Url of the Frepple page to be embedded.",
    "fieldname": "url",
@@ -44,7 +38,7 @@
   }
  ],
  "issingle": 1,
- "modified": "2022-01-27 16:51:50.104194",
+ "modified": "2022-02-08 14:52:05.176266",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Resource Report Page",

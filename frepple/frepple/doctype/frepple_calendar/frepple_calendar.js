@@ -15,7 +15,7 @@ frappe.ui.form.on('Frepple Calendar', {
 					// docstatus: 1
 				}
 			})
-		}, __("Fetch items to"));
+		}, __("Add calendar to"));
 	}
 });
 

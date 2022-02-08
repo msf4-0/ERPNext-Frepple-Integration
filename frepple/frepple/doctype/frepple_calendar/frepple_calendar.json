@@ -20,7 +20,7 @@
    "unique": 1
   },
   {
-   "description": "0: Unavailable calendar \n1: Available calendar",
+   "description": "0: Unavailable calendar \n1: Available calendar\nSet value to 0 to indicate the non working hour for the resource.",
    "fieldname": "default_value",
    "fieldtype": "Int",
    "label": "Default value"
@@ -37,7 +37,7 @@
    "options": "Frepple Calendar Calendar Bucket"
   }
  ],
- "modified": "2022-01-26 12:43:42.926697",
+ "modified": "2022-02-08 09:32:39.709704",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Calendar",

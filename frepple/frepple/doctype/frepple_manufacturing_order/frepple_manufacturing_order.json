@@ -15,7 +15,9 @@
   "column_break_8",
   "end_date",
   "section_break_10",
-  "erpnext_wo"
+  "demand",
+  "erpnext_wo",
+  "latest_reference"
  ],
  "fields": [
   {
@@ -83,9 +85,21 @@
    "in_list_view": 1,
    "label": "ERPNext Work Order",
    "options": "Work Order"
+  },
+  {
+   "fieldname": "demand",
+   "fieldtype": "Link",
+   "label": "Demand Link",
+   "options": "Frepple Demand"
+  },
+  {
+   "description": "Reference that match the manufacturing order on Frepple side.",
+   "fieldname": "latest_reference",
+   "fieldtype": "Data",
+   "label": "Latest reference"
   }
  ],
- "modified": "2022-02-07 10:54:05.486376",
+ "modified": "2022-02-08 09:54:22.073271",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Manufacturing Order",

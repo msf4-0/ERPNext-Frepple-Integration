@@ -7,7 +7,6 @@
   "expiration",
   "user",
   "show_navigation_bar",
-  "secret_key",
   "url"
  ],
  "fields": [
@@ -25,11 +24,6 @@
    "label": "User"
   },
   {
-   "fieldname": "secret_key",
-   "fieldtype": "Data",
-   "label": "Secret Key"
-  },
-  {
    "default": "http://localhost:5000/data/input/manufacturingorder/",
    "description": "Url of the Frepple page to be embedded.",
    "fieldname": "url",
@@ -44,7 +38,7 @@
   }
  ],
  "issingle": 1,
- "modified": "2022-01-27 15:05:09.281732",
+ "modified": "2022-02-08 14:52:14.168458",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Manufacturing Order Page",

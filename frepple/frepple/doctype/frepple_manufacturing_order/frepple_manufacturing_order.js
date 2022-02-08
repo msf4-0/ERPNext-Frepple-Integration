@@ -16,3 +16,5 @@ frappe.ui.form.on('Frepple Manufacturing Order', {
 		});
 	}
 });
+
+

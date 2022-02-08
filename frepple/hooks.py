@@ -90,7 +90,8 @@ app_license = "MIT"
 doctype_js = {
     'Work Order':'public/js/work_order.js',
     'Purchase Order':'public/js/purchase_order.js',
-    'Sales Order':'publick/js/purchase_order.js'
+    'Sales Order':'public/js/sales_order.js',
+    'Bin':'public/js/bin.js',
 }
 # Scheduled Tasks
 # ---------------

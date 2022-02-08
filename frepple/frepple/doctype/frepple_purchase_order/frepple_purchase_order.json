@@ -12,7 +12,8 @@
   "item",
   "quantity",
   "status",
-  "erpnext_po"
+  "erpnext_po",
+  "latest_reference"
  ],
  "fields": [
   {
@@ -39,6 +40,7 @@
   {
    "fieldname": "item",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Item",
    "options": "Frepple Item",
    "reqd": 1
@@ -70,9 +72,15 @@
    "in_list_view": 1,
    "label": "ERPNext Purchase Order",
    "options": "Purchase Order"
+  },
+  {
+   "description": "Reference that match purchase order on frepple side.",
+   "fieldname": "latest_reference",
+   "fieldtype": "Data",
+   "label": "Latest reference"
   }
  ],
- "modified": "2022-02-07 11:01:13.059340",
+ "modified": "2022-02-08 09:52:38.393526",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Purchase Order",

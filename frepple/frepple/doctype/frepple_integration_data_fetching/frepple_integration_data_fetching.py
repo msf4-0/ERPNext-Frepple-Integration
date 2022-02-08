@@ -93,6 +93,10 @@ def fetch_items():
 			new_item.cost = item.valuation_rate
 			new_item.item_owner = item.item_group
 			new_item.insert()
+		else:#Update 
+			frappe.db.set_value('Frepple Item', item.item_code, {
+				'cost':item.valuation_rate,
+			}) 
 
 def fetch_customers():
 	customers = frappe.db.sql("""SELECT name, customer_group, customer_type FROM `tabCustomer`""",as_dict=1)
@@ -103,11 +107,6 @@ def fetch_customers():
 			new_customer.customer_group = customer.customer_group
 			new_customer.customer_type = customer.customer_type
 			new_customer.insert()
-
-	# frappe.msgprint(
-	# 	msg='.',
-	# 	title='Note',
-	# )
 
 def fetch_locations():
 	locations = frappe.db.sql("""SELECT name, company FROM `tabWarehouse`""",as_dict=1)
@@ -125,12 +124,12 @@ def fetch_locations():
 			new_location.location_owner = location.company
 			new_location.insert()
 
-	
-
 def fetch_buffers():
 	bins = frappe.db.sql(
 		"""
-		SELECT warehouse, item_code,actual_qty FROM `tabBin`
+		SELECT 
+		warehouse, item_code,actual_qty 
+		FROM `tabBin`
 		""",
 		as_dict=1)
 	for bin in bins:
@@ -140,8 +139,10 @@ def fetch_buffers():
 			new_bin.location = bin.warehouse
 			new_bin.onhand = bin.actual_qty
 			new_bin.insert()
-	
-
+		else: #update
+			frappe.db.set_value('Frepple Buffer',bin.item_code+"@"+bin.warehouse, {
+				'onhand':bin.actual_qty,
+			}) #Update the quantity
 
 
 def fetch_resources():
@@ -190,7 +191,7 @@ def fetch_skills():
 			new_skill.insert()
 
 
-''' Under progress'''
+''' Not necessary'''
 # def fetch_resource_skills():
 # 	employee_skill_list = frappe.db.sql("""SELECT name,employee_skills FROM `tabEmployee Skill Map`""",as_dict=1)
 
@@ -211,7 +212,7 @@ def fetch_suppliers():
 			new_supplier.supplier = supplier.name
 			new_supplier.insert()
 
-''' Under progress'''
+''' Not necessary'''
 # def fetch_supplier_items():
 # 	suppliers = frappe.db.sql("""SELECT name FROM `tabSupplier`""",as_dict=1)
 # 	for supplier in suppliers:
@@ -237,7 +238,8 @@ def fetch_operations():
 		as_dict=1)
 	
 	for BOM in BOMs:
-		if not frappe.db.exists("Frepple Operation",BOM.name):
+		if not frappe.db.exists("Frepple Operation",BOM.name): 
+			# FOR routing type operation : BOM
 			print(BOM)
 			new_operation = frappe.new_doc("Frepple Operation")
 			new_operation.operation = BOM.name
@@ -247,8 +249,10 @@ def fetch_operations():
 			new_operation.duration = time(0,0,0)
 			new_operation.priority = 1
 			new_operation.insert()
+		
 
 		if not frappe.db.exists("Frepple Operation",BOM.operation+"@"+BOM.name):
+			# For time per type operation : Operation in the BOM
 			new_operation = frappe.new_doc("Frepple Operation")
 			new_operation.operation = BOM.operation+"@"+BOM.name
 			new_operation.location = locations[0].name
@@ -258,6 +262,10 @@ def fetch_operations():
 			new_operation.duration_per_unit=add_to_date(datetime(1900,1,1,0,0,0),minutes=(BOM.time_in_mins),as_datetime=True).time() #get only the time
 			new_operation.priority = BOM.idx
 			new_operation.insert()
+		else:
+			frappe.db.set_value('Frepple Operation', BOM.operation+"@"+BOM.name, {
+				'duration_per_unit':add_to_date(datetime(1900,1,1,0,0,0),minutes=(BOM.time_in_mins),as_datetime=True).time() #get only the time,
+			}) 
 
 
 
@@ -349,22 +357,11 @@ def fetch_operation_resources():
 
 
 def fetch_sales_orders():
-	# sales_order_names= frappe.db.sql(
-	# 	"""
-	# 	SELECT name 
-	# 	WHERE `tabSales Order`
-	# 	"""
-	# )
-	# name_condition=""
-	# for sales_order_name in sales_order_names:
-	# 		name_condition += "not like" + str(sales_order_name)
-	# 	if sales_order_name.idx != len(sales_order_names)
-	# 		name_condition += "and"
 	sales_orders = frappe.db.sql(
 		"""
-		SELECT so.name, so.company, so.status, soi.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
+		SELECT so.name, so.company, so.status,so.docstatus, soi.delivery_date, so.customer,soi.item_code, soi.qty, soi.work_order_qty  
 		FROM `tabSales Order` so, `tabSales Order Item` soi
-		WHERE soi.parent = so.name and soi.work_order_qty < 1 and so.status = "To Deliver and Bill"
+		WHERE soi.parent = so.name and soi.work_order_qty < 1 and so.docstatus = 1
 		""",
 	as_dict=1)
 
@@ -376,7 +373,7 @@ def fetch_sales_orders():
 	as_dict=1)
 		
 	for sales_order in sales_orders:
-		frepple_demand = frappe.db.sql(
+		frepple_demands = frappe.db.sql(
 			"""
 			SELECT name  
 			FROM `tabFrepple Demand`
@@ -387,12 +384,12 @@ def fetch_sales_orders():
 		deliver_date = sales_order.delivery_date
 		# Check the delivery date is none or not
 		if sales_order.delivery_date == None:
-			deliver_date= add_to_date(datetime.now(),days=(4),as_datetime=True).date() #set a default date
+			deliver_date= add_to_date(datetime.now(),days=(4),as_datetime=True).date() #set a default date 4 day after today
 		
 		# CHeck the erpnext sales order status and get its correspond frepple demand status
-		status = so_status(sales_order.status)
+		status = so_status_e2f(sales_order.status)
 		
-		if not len(frepple_demand):
+		if not len(frepple_demand): #If we have more than 1 element in the array, mean the demand already existed
 			new_demand = frappe.new_doc("Frepple Demand")
 			new_demand.item = sales_order.item_code
 			new_demand.qty = sales_order.qty
@@ -404,18 +401,25 @@ def fetch_sales_orders():
 			new_demand.so_owner =  sales_order.name
 			new_demand.status = status
 			new_demand.insert()
+		else: #update
+			for frepple_demand in frepple_demands:
+				frappe.db.set_value('Frepple Demand',frepple_demand.name, {
+					'status':status
+				}) 
 
 # CHeck the erpnext sales order status and get its correspond frepple demand status
-def so_status(status):
+# ERPnext to frepple
+def so_status_e2f(status):
 	switcher={
 		"Draft":'inquiry',
 		"On Hold":'inquiry',
 		"To Deliver and Bill":'open',
-		"To Bill":'open',
-		"To Deliver":'open',
+		"To Bill":'closed',
+		"To Deliver":'closed',
 		"Completed":'closed',
 		"Cancelled":'canceled',
 		"Closed":'closed',
+		"Overdue": 'canceled',
 		}
 	return switcher.get(status,"inquiry")
 

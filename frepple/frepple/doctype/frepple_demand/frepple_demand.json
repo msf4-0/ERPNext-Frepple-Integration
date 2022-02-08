@@ -34,7 +34,6 @@
   {
    "fieldname": "location",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Location",
    "options": "Frepple Location",
    "reqd": 1
@@ -68,6 +67,7 @@
    "default": "open",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "inquiry\nquote\nopen\nclosed\ncanceled"
   },
@@ -85,7 +85,7 @@
    "label": "Item Name"
   }
  ],
- "modified": "2022-02-07 10:51:00.956958",
+ "modified": "2022-02-07 17:38:58.959597",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Demand",
