@@ -191,29 +191,31 @@ def generate_manufacturing_order(data):
 				new_doc.demand = demand
 				new_doc.insert()
 				print(new_doc.name)
+			elif frappe.db.exists("Frepple Manufacturing Order",i["reference"]) and len(mos)== 0:
+				continue
 			else:#update
-				# if frappe.db.exists("Frepple Manufacturing Order",i["reference"]):
-				existing_doc = frappe.get_doc("Frepple Manufacturing Order",mos[0].name)
-				print(existing_doc)
-				frappe.db.set_value('Frepple Manufacturing Order', mos[0].name, #Update the status
-				{
-					'latest_reference': i["reference"],
-					'operation': i["operation"],
-					'status': i["status"],
-					'quantity': i["quantity"],
-					# 'completed_quantity': i["quantity_completed"],
-					'start_date': datetime.fromisoformat(i["startdate"]),
-					'end_date': datetime.fromisoformat(i["enddate"])
-				})
-				# existing_doc.reference = i["reference"]
-				# existing_doc.operation = i["operation"]
-				# existing_doc.status = i["status"]
-				# existing_doc.quantity = i["quantity"]
-				# existing_doc.completed_quantity = i["quantity_completed"]
-				# existing_doc.start_date = datetime.fromisoformat(i["startdate"])
-				# existing_doc.end_date = datetime.fromisoformat(i["enddate"])
-				# existing_doc.save(ignore_permissions=True, ignore_version=True)
-				# existing_doc.reload()
+				if frappe.db.exists("Frepple Manufacturing Order",mos[0].name):
+					existing_doc = frappe.get_doc("Frepple Manufacturing Order",mos[0].name)
+					print(existing_doc)
+					frappe.db.set_value('Frepple Manufacturing Order', mos[0].name, #Update the status
+					{
+						'latest_reference': i["reference"],
+						'operation': i["operation"],
+						'status': i["status"],
+						'quantity': i["quantity"],
+						# 'completed_quantity': i["quantity_completed"],
+						'start_date': datetime.fromisoformat(i["startdate"]),
+						'end_date': datetime.fromisoformat(i["enddate"])
+					})
+					# existing_doc.reference = i["reference"]
+					# existing_doc.operation = i["operation"]
+					# existing_doc.status = i["status"]
+					# existing_doc.quantity = i["quantity"]
+					# existing_doc.completed_quantity = i["quantity_completed"]
+					# existing_doc.start_date = datetime.fromisoformat(i["startdate"])
+					# existing_doc.end_date = datetime.fromisoformat(i["enddate"])
+					# existing_doc.save(ignore_permissions=True, ignore_version=True)
+					# existing_doc.reload()
 
 
 def import_purchase_order():
