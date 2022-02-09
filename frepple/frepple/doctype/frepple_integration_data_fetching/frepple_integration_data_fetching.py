@@ -284,16 +284,17 @@ def fetch_operation_materials():
 		WHERE bom.is_active = 1 and bom.is_default=1 and bom.name = bomop.parent and bom.name = bomit.parent
 		""",
 	as_dict=1)
-	frepple_operations = frappe.db.sql(
-		"""
-		SELECT name,type
-		FROM `tabFrepple Operation`
-		WHERE type = "time_per"
-		""",
-	as_dict=1)
-
 
 	for BOM in BOMs:
+		print(BOM.name)
+		frepple_operations = frappe.db.sql(
+			"""
+			SELECT name,type,operation_owner
+			FROM `tabFrepple Operation`
+			WHERE type = "time_per" and operation_owner = %s
+			""",
+		BOM.name,as_dict=1)
+		print(frepple_operations[0].name)
 		if (BOM.transfer_material_against == "Work Order"): #let the first operation consumed raw material and produce product
 			# for item in BOM.item_code:
 			# For product which is being produced
