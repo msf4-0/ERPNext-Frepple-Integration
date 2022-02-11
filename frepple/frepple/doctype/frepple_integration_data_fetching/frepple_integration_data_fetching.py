@@ -157,7 +157,7 @@ def fetch_resources():
 		if not frappe.db.exists("Frepple Resource",employee.name):
 			new_employee = frappe.new_doc("Frepple Resource")
 			new_employee.employee = employee.name
-			new_employee.descrption = employee.employee_name
+			new_employee.description = employee.employee_name
 			new_employee.location = locations[0].name
 			new_employee.resource_owner = "Operator" #default
 

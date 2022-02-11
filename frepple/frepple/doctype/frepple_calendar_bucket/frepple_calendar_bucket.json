@@ -36,7 +36,7 @@
   {
    "fieldname": "date_section",
    "fieldtype": "Section Break",
-   "label": "Date"
+   "label": "Effective Date"
   },
   {
    "default": "1970:1:1 00:00:00",
@@ -134,7 +134,7 @@
    "label": "Priority"
   }
  ],
- "modified": "2022-01-31 15:20:48.376654",
+ "modified": "2022-02-11 10:41:03.890348",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Calendar Bucket",

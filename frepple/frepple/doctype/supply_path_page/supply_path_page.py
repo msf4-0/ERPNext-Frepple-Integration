@@ -16,8 +16,14 @@ class SupplyPathPage(Document):
 def get_iframe_url():
 	doc = frappe.get_doc('Supply Path Page')
 	doc_2 = frappe.get_doc('Frepple Settings')
-	demands = frappe.db.get_list('Frepple Demand')
+	
 
+	demand_to_show = ""
+	if doc.demand:
+		demand_to_show = doc.demand
+	else:
+		demands = frappe.db.get_list('Frepple Demand')
+		demand_to_show = demands[0].name
 
 	WEBTOKEN = jwt.encode({
 		'exp': round(time.time()) + doc.expiration,    # Validity of the token
@@ -28,4 +34,5 @@ def get_iframe_url():
 	algorithm='HS256'
 	).decode('ascii')
 
-	return doc.url + demands[0].name +'/?webtoken=' + WEBTOKEN
+	print(doc.url + demand_to_show +'/?webtoken=' + WEBTOKEN)
+	return doc.url + demand_to_show +'/?webtoken=' + WEBTOKEN
