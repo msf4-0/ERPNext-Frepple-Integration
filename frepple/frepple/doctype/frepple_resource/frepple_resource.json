@@ -24,6 +24,7 @@
   {
    "fieldname": "location",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Location",
    "options": "Frepple Location"
   },
@@ -116,7 +117,7 @@
    "options": "Frepple Calendar"
   }
  ],
- "modified": "2022-01-28 16:52:28.552869",
+ "modified": "2022-02-11 11:12:06.433322",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Resource",

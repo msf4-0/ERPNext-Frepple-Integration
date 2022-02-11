@@ -139,7 +139,6 @@ def export_calendars():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 	
-	return output
 
 def export_calendar_buckets():
 	api = "calendarbucket"
@@ -175,7 +174,6 @@ def export_calendar_buckets():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 	
-	return output
 
 def export_items():
 	api = "item" 
@@ -201,7 +199,6 @@ def export_items():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 	
-	return output
 
 def export_customers():
 	api = "customer"
@@ -224,7 +221,6 @@ def export_customers():
 		output = make_post_request(url,headers=headers, data=data)
 	
 
-	return output
 	
 
 def export_locations():
@@ -265,7 +261,6 @@ def export_locations():
 			})
 			output = make_post_request(url,headers=headers, data=data)
 
-	return output
 
 	
 
@@ -286,7 +281,6 @@ def export_buffers():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 	
-	return output
 
 
 def export_item_distribution():
@@ -348,7 +342,6 @@ def export_resources():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 	
-	return output
 
 def export_skills():
 	api = "skill" 
@@ -378,7 +371,6 @@ def export_resource_skills():
 
 		output = make_post_request(url,headers=headers, data=data)
 
-	return output
 	
 def export_suppliers():
 	api = "supplier" #equivalent to customer doctype		
@@ -493,7 +485,6 @@ def export_operations():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 
-	return output
 
 def export_operation_materials():
 	api = "operationmaterial"
