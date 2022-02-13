@@ -330,14 +330,6 @@ def fetch_operation_materials():
 		# 	new_operation.insert()
 
 
-
-	# for BOM in BOMs:
-	# 	if not frappe.db.exists("Frepple Operation",BOMs.name):
-	# 		new_operation = frappe.new_doc("Frepple Operation")
-			
-	# 		new_operation.insert()
-
-
 def fetch_operation_resources():
 	BOMs = frappe.db.sql(
 		"""

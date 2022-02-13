@@ -7,22 +7,28 @@ def get_data():
             "label": _("Frepple Sales"),
             "items": [
                 {
+                    "type": "page",
+                    "name": "demand-page",
+                    "label": "Frepple Demand Page",
+                    "onboard": 1,
+                },
+                {
                     "type": "doctype",
                     "name": "Frepple Demand",
                     "label": "Frepple Demand",
-                    "onboard": 1,
+                    "onboard": 2,
                 },
                 {
                     "type": "doctype",
                     "name": "Frepple Item",
                     "label": "Frepple Item",
-                    "onboard": 2,
+                    "onboard": 3,
                 },
                 {
                     "type": "doctype",
                     "name": "Frepple Customer",
                     "label": "Frepple Customer",
-                    "onboard": 3,
+                    "onboard": 4,
                 },
                 {
                     "type": "doctype",
@@ -147,23 +153,6 @@ def get_data():
                     "label": "Frepple Item Distribution",
                     "onboard": 4,
                 },
-            ]
-        },
-        {
-            "label": _("Frepple Result"),
-            "items": [
-                # {
-                #     "type": "doctype",
-                #     "name": "Frepple Sales Order",
-                #     "label": "Frepple Sales Order",
-                #     "onboard": 1,
-                # },
-                # {
-                #     "type": "doctype",
-                #     "name": "Frepple Manufacturing Order",
-                #     "label": "Frepple Manufacturing Order",
-                #     "onboard": 2,
-                # },
             ]
         },
         {
