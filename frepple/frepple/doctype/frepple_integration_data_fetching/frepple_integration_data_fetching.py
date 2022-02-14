@@ -191,17 +191,29 @@ def fetch_skills():
 			new_skill.insert()
 
 
-''' Not necessary'''
-# def fetch_resource_skills():
-# 	employee_skill_list = frappe.db.sql("""SELECT name,employee_skills FROM `tabEmployee Skill Map`""",as_dict=1)
+def fetch_resource_skills():
+	employee_skill_list = frappe.db.sql("""
+		SELECT esm.name, es.skill, es.proficiency
+		FROM `tabEmployee Skill Map` esm, `tabEmployee Skill` es
+		WHERE esm.name = es.parent
+		""",
+	as_dict=1)
 
-# 	if (employee_skill_list):
-# 		for employee_skill in employee_skill_list:
+	if (employee_skill_list):
+		for i in employee_skill_list:
+			print(i)
+			
+			if not frappe.db.exists("Frepple Resource Skill",i.name+"@"+i.skill):
+				new_resource_skill = frappe.new_doc("Frepple Resource Skill")
+				new_resource_skill.skill = i.skill
+				new_resource_skill.resource = i.name
+				new_resource_skill.proficiency = i.proficiency
+				new_resource_skill.insert()
+			elif frappe.db.exists("Frepple Resource Skill",i.name+"@"+i.skill):
+				frappe.db.set_value('Frepple Resource Skill',i.name+"@"+i.skill, {
+					'proficiency':i.proficiency
+				}) 
 
-# 			if not frappe.db.exists("Frepple Resource Skill",name+"@"+employee_skills):
-# 				new_resource_skill = frappe.new_doc("Frepple Resource Skill")
-# 				# new_resource_skill.skill = employee_skill.
-# 				# new_employee.insert()
 
 
 def fetch_suppliers():
@@ -267,13 +279,6 @@ def fetch_operations():
 				'duration_per_unit':add_to_date(datetime(1900,1,1,0,0,0),minutes=(BOM.time_in_mins),as_datetime=True).time() #get only the time,
 			}) 
 
-
-
-	# for BOM in BOMs:
-	# 	if not frappe.db.exists("Frepple Operation",BOMs.name):
-	# 		new_operation = frappe.new_doc("Frepple Operation")
-			
-	# 		new_operation.insert()
 
 
 def fetch_operation_materials():

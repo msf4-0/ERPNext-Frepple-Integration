@@ -67,8 +67,7 @@
    "default": "0",
    "fieldname": "frepple_resource_skill",
    "fieldtype": "Check",
-   "label": " Frepple Resource Skill",
-   "read_only": 1
+   "label": " Frepple Resource Skill"
   },
   {
    "default": "0",
@@ -215,7 +214,7 @@
   }
  ],
  "issingle": 1,
- "modified": "2022-01-28 11:34:47.117604",
+ "modified": "2022-02-14 09:40:04.639244",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Integration Data Fetching",

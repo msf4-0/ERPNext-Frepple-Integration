@@ -7,7 +7,7 @@
  "field_order": [
   "resource",
   "skill",
-  "priority"
+  "proficiency"
  ],
  "fields": [
   {
@@ -29,12 +29,13 @@
   {
    "default": "1",
    "description": "Proficiency of the skill.",
-   "fieldname": "priority",
+   "fieldname": "proficiency",
    "fieldtype": "Rating",
-   "label": "Priority"
+   "in_list_view": 1,
+   "label": "Proficiency"
   }
  ],
- "modified": "2022-01-26 17:24:13.987905",
+ "modified": "2022-02-14 09:38:32.882809",
  "modified_by": "Administrator",
  "module": "Frepple",
  "name": "Frepple Resource Skill",

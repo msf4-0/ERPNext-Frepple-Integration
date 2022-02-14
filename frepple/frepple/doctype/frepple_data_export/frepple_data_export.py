@@ -360,13 +360,13 @@ def export_resource_skills():
 	api = "resourceskill" #equivalent to customer doctype
 	url,headers = get_frepple_params(api=api,filter=None)
 		
-	employee_skill_list = frappe.db.sql("""SELECT resource,skill, priority FROM `tabFrepple Resource Skill`""",as_dict=1)
+	employee_skill_list = frappe.db.sql("""SELECT resource,skill, proficiency FROM `tabFrepple Resource Skill`""",as_dict=1)
 	
 	for employee_skill in employee_skill_list:
 		data = json.dumps({
 			"resource": employee_skill.resource,
 			"skill":employee_skill.skill,
-			"priority":5-employee_skill.priority
+			"priority":5-employee_skill.proficiency
 		})
 
 		output = make_post_request(url,headers=headers, data=data)
