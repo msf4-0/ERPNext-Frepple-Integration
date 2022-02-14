@@ -26,7 +26,7 @@ class PurchaseOrderPage {
 						<iframe
 							src=${this.URL}
 							width="100%"
-							height="500"
+							height="590"
 							marginwidth="0"
 							marginheight="0"
 							frameborder="no"
