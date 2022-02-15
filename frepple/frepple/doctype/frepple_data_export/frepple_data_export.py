@@ -218,10 +218,8 @@ def export_customers():
 			"category":customer.customer_type,
 			"owner":customer.customer_group
 		})
-		output = make_post_request(url,headers=headers, data=data)
-	
+		output = make_post_request(url,headers=headers, data=data)	
 
-	
 
 def export_locations():
 	api = "location"
@@ -260,8 +258,6 @@ def export_locations():
 				"available":available
 			})
 			output = make_post_request(url,headers=headers, data=data)
-
-
 	
 
 def export_buffers():
@@ -281,7 +277,6 @@ def export_buffers():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 	
-
 
 def export_item_distribution():
 	api = "itemdistribution"
@@ -356,6 +351,7 @@ def export_skills():
 
 		output = make_post_request(url,headers=headers, data=data)
 
+
 def export_resource_skills():
 	api = "resourceskill" #equivalent to customer doctype
 	url,headers = get_frepple_params(api=api,filter=None)
@@ -422,7 +418,6 @@ def export_item_suppliers():
 
 		output = make_post_request(url,headers=headers, data=data)
 		
-
 
 def export_operations():
 	api = "operation"
@@ -548,6 +543,7 @@ def export_operation_resources():
 		})
 		output = make_post_request(url,headers=headers, data=data)
 
+
 def export_sales_orders():
 	api = "demand" #equivalent sales order
 	url,headers = get_frepple_params(api=api,filter=None)
@@ -576,32 +572,3 @@ def export_sales_orders():
 
 		output = make_post_request(url,headers=headers, data=data)
 
-
-
-# def export_manufacturing_orders():
-# 	api = "manufacturingorder" #equivalent work order
-# 	url,headers = get_frepple_params(api=api,filter=None)
-	
-# 	sales_orders = frappe.db.sql(
-# 		"""
-# 		SELECT reference,operation,status,qty,location,customer, timestamp(due) as "due",priority,status,so_owner
-# 		FROM `tabFrepple Manufacturing Order`
-# 		""",
-# 	as_dict=1)
-
-		
-# 	for sales_order in sales_orders:
-# 		print(sales_order)
-# 		data = json.dumps({
-# 			"name": sales_order.name,
-# 			"description": sales_order.item_name + " ordered by " + sales_order.customer, #default
-# 			"item": sales_order.item,
-# 			"customer": sales_order.customer,
-# 			"location": sales_order.location,
-# 			"due":  sales_order.due.isoformat(),
-# 			"status": sales_order.status,
-# 			"quantity": sales_order.qty,
-# 			"priority": sales_order.priority
-# 		})
-
-# 		output = make_post_request(url,headers=headers, data=data)

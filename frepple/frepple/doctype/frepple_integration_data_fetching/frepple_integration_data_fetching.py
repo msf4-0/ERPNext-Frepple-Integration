@@ -12,8 +12,6 @@ from datetime import time
 from datetime import timedelta
 from frappe.utils import add_to_date
 
-
-
 class FreppleIntegrationDataFetching(Document):
 	pass
 
@@ -213,8 +211,6 @@ def fetch_resource_skills():
 				frappe.db.set_value('Frepple Resource Skill',i.name+"@"+i.skill, {
 					'proficiency':i.proficiency
 				}) 
-
-
 
 def fetch_suppliers():
 	suppliers = frappe.db.sql("""SELECT name FROM `tabSupplier`""",as_dict=1)
