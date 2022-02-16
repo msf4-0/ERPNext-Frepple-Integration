@@ -8,9 +8,26 @@ frappe.ui.form.on('Frepple Calendar Bucket', {
 			doc: frm.doc,
 			// method:"make_request",
 			callback:function(r){
-				console.log(r.message)
 			}
 		});
+	},
 
+	validate:function(frm){
+		frm.call({
+			method:"check_priority",
+			doc: frm.doc,
+			// method:"make_request",
+			callback:function(r){
+				var duplicate = r.message
+				if (duplicate){
+					frappe.validated = false
+					frappe.msgprint({
+						title: __('Notice'),
+						indicator: 'red',
+						message: __('Priority is duplicate. Please modify it.')
+					});
+				}
+			}
+		});
 	}
 });
