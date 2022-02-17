@@ -65,10 +65,6 @@ Go to `Settings > Frepple Settings`.
 - Secret key: 
 > Key is required for iframe embedded to render the Frepple page. Can be found under `etc/frepple/djangosettings.py` file. Check wiki to know more.
 
-#### License
-MIT
-=======
-
 
 ## Contributors
 1. [Drayang Chua Kai Yang](https://github.com/Drayang)
