@@ -34,13 +34,13 @@ Frepple Custom App built based on Frepple Advance Planning and Scheduling softwa
 ## Usage
 ### 1. Installation
 Navigate to the bench directory and run the following command:
-`bench get-app frepple https://github.com/Drayang/ERPNext-Frepple.git`
+> bench get-app frepple https://github.com/Drayang/ERPNext-Frepple.git
 
 Install the app onto your site.
-`bench --site [your.site.name] install-app frepple `
+> bench --site [your.site.name] install-app frepple 
 
 Bench start
-`bench start`
+> bench start
 
 
 
