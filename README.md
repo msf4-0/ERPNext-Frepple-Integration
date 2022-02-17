@@ -73,7 +73,7 @@ Go to `Settings > Frepple Settings`.
 > Checkbox. Tick it to turn on the automatic status syncing for sales order, work order, purchase order status and bin (stock) amount update.
 
 - Secret key: 
-> Key is required for iframe embedded to render the Frepple page. Can be found under `etc/frepple/djangosettings.py` file. Check wiki to know more.
+> Key is required for iframe embedded to render the Frepple page. Can be found under `etc/frepple/djangosettings.py` file.
 
 
 ## Contributors
