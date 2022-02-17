@@ -42,7 +42,28 @@ Install the app onto your site.
 Bench start
 > bench start
 
+The Frepple custom app main page.
+<img width="866" alt="Frepple module main page" src="https://user-images.githubusercontent.com/53387856/154392630-7c1c2522-e0b6-4af4-8c82-a793c5fb65d5.png">
 
+### 2. Frepple settings configuration
+Before starting using Frepple custom app, you are required to set up certain information to enable the integration between ERPNext and Frepple. 
+Go to `Settings > Frepple Settings`. 
+
+- Authentication header: 
+> The Bearer web token key that required for REST API request. The key can be found in `Frepple Software`, under `Help > REST API Help`. 
+
+- Username and password: 
+> Username and password of superuser in Frepple. Default username and password are both “admin”. The information can also be found in `Frepple Software`, under `Admin > User`.
+ 
+
+- URL: 
+> Web url that the user host the Frepple. The url is used for REST API request Get the wireless router IP address. You can find the Wireless LAN adapter Wi-Fi IPv4 address using `ipconfig` (Window OS) or `ifconfig` (Linux OS) command in the command prompt. E.g. http://192.168.112.1:5000. 
+
+- Frepple Integration: 
+> Checkbox. Tick it to turn on the automatic status syncing for sales order, work order, purchase order status and bin (stock) amount update.
+
+- Secret key: 
+> Key is required for iframe embedded to render the Frepple page. Can be found under `etc/frepple/djangosettings.py` file. Check wiki to know more.
 
 #### License
 MIT
