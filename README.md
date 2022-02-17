@@ -17,7 +17,8 @@
 
 
 ## [Frepple](https://github.com/frePPLe/frepple) integration for [Frappe web framework](https://github.com/frappe/frappe)
-Frepple Custom App built based on Frepple Advance Planning and Scheduling software. It was built to integrate with ERPNext.
+Frepple Custom App built based on Frepple Advance Planning and Scheduling software. It was built to integrate with ERPNext, act as a connector that allow bidirectional data transfer between Frepple and ERPNext. It also used to map the data type between frepple and ERPNext since both software do not use the same data structure and format. 
+
 
 ## Prerequisite
 1. Installed the Frepple and successfully launched it on the localhost. 
@@ -75,6 +76,8 @@ Go to `Settings > Frepple Settings`.
 - Secret key: 
 > Key is required for iframe embedded to render the Frepple page. Can be found under `etc/frepple/djangosettings.py` file.
 
+## Important Note
+Frepple custom app does not do data validation when the data are export to Frepple software. The custom app is mainly  User must have basic knowledge on Frepple to ensure the data provided are sufficient to generate the plan in Frepple. A qucik debug step is check the supply path of the product. Ensure the supply path is similar to what you are expected. Remember to set up item supplier for the raw material.
 
 ## Contributors
 1. [Drayang Chua Kai Yang](https://github.com/Drayang)
