@@ -16,7 +16,7 @@
 </a>
 
 
-## [Frepple](https://github.com/frePPLe/frepple)
+## [Frepple](https://github.com/frePPLe/frepple) integration for [Frappe web framework](https://github.com/frappe/frappe)
 Frepple Custom App built based on Frepple Advance Planning and Scheduling software. It was built to integrate with ERPNext.
 
 ## Prerequisite
