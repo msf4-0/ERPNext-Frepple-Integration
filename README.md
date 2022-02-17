@@ -16,19 +16,22 @@
 </a>
 
 
-
 ## Frepple
-Frepple Custom App built based on Frepple Advance Planning and Scheduling software.
-Frepple Advance Planning and Scheduling Software integration with ERPNext.
+Frepple Custom App built based on Frepple Advance Planning and Scheduling software. It was built to integrate with ERPNext.
 
 ## Prerequisite
-Installed the Frepple and successfully launched it on the localhost. 
+1. Installed the Frepple and successfully launched it on the localhost. 
+2. Installed the ERPNext and successfully launched it on the localhost.
 
 ## The App Contains
-
+1. Export data from ERPNext to Frepple by a few button click.
+2. Generate the plan in Frepple custom app itself, with the flexibility to change the plan constraint.
+3. Import the manufacturing order and purchase order from Frepple to ERPNext.
+4. Embed Frepple page into ERPNext using iframe. User is able to create the iframe page via `Frepple Custom Page`.
+5. Generate the work order and purchase order in ERPNext based on the result from Frepple.
+6. Sync the status of work order and purchase order between ERPNext and Frepple.
 
 #### License
-
 MIT
 =======
 
