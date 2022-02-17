@@ -31,6 +31,19 @@ Frepple Custom App built based on Frepple Advance Planning and Scheduling softwa
 5. Generate the work order and purchase order in ERPNext based on the result from Frepple.
 6. Sync the status of work order and purchase order between ERPNext and Frepple.
 
+## Usage
+### 1. Installation
+Navigate to the bench directory and run the following command:
+`bench get-app frepple https://github.com/Drayang/ERPNext-Frepple.git`
+
+Install the app onto your site.
+`bench --site [your.site.name] install-app frepple `
+
+Bench start
+`bench start`
+
+
+
 #### License
 MIT
 =======
