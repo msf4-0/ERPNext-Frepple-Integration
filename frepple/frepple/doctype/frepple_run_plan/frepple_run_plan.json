@@ -50,18 +50,18 @@
    "default": "1",
    "fieldname": "constraint",
    "fieldtype": "Check",
-   "label": "Constraint"
+   "label": "Constrained"
   },
   {
    "default": "0",
    "fieldname": "unconstraint",
    "fieldtype": "Check",
-   "label": "Unconstraint"
+   "label": "Unconstrained"
   },
   {
    "fieldname": "constraint_column",
    "fieldtype": "Column Break",
-   "label": "Constraint"
+   "label": "Constraints"
   },
   {
    "default": "1",
