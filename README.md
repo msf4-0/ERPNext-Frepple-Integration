@@ -82,3 +82,8 @@ Frepple custom app does not perform any data validation when the data are export
 1. [Drayang Chua Kai Yang](https://github.com/Drayang)
 2. [Lee Xin Yue](https://github.com/leexy0)
 3. [Chia Jun Shen](https://github.com/chiajunshen)
+
+
+## License
+This software is licensed under the [GNU GPLv3 LICENSE](/LICENSE) © [Selangor Human Resource Development Centre](http://www.shrdc.org.my/). 2021.  All Rights Reserved.
+
